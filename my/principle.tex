@@ -57,7 +57,7 @@ F_{\mathrm{elec}} = (p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} - p_0 \c
   \item 需要围绕选定的静电卡盘及试验用到的各种装置搭建专用真空腔室，其设计复杂，加工要求高；一旦更换被测静电卡盘型号，需重新设计腔室及配套系统；这部分的工作量与复杂程度甚至已经逼近刻蚀机的核心部分。
   \item 抽真空需使用真空泵，花费数小时才能达到真空，若需打开腔室进行调整，则需先平衡气压，再改动，再抽真空；费时费力。
   \item 真空下，背吹气体泄漏率较高 %TODO:xref/cite
-  ，该流动过程可能对晶圆受力产生影响（见\ref{sec:principle-flow}），使数据处理变得复杂。
+  ，该流动过程可能对晶圆受力产生影响（见\ref{sec:principle-flow}节），使数据处理变得复杂。
   \item 有等离子体存在的时候，卡盘上方的空间基本无法放置任何测量装置（否则会遮挡等离子体，或与等离子体互相干扰），这为测量方案的设计带来了相当大的障碍。
 \end{itemize}
 
@@ -155,7 +155,7 @@ F_{\mathrm{elec}} = (p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} - p_0 \c
 \label{fig:principle-gap-ruby-sch}
 \end{figure}
 
-如图~\ref{fig:principle-gap-ruby-sch} ，将一个三坐标测量机标准红宝石探头（图中以红色圆形表示，实际为球面），安装在微力传感器上，即组成一微力探头。将其竖直放置，轻轻接触已吸附的晶圆表面。根据受力平衡，微力传感器的读数等于探头向晶圆提供的支持力$N_{\mathrm{probe}}$大小。正常工作时，$N_{\mathrm{probe}} \approx 0$。当晶圆开始脱附时，卡盘表面不再向晶圆提供支持力，即$N_{\mathrm{chuck}} \to 0$，而逐渐转由探头向晶圆提供支持力，即$N_{\mathrm{probe}}$逐渐增加。由于力传感器自身具有一定弹性，在此期间容许晶圆有一定的挠度，但由于$N_{\mathrm{probe}}$绝对数值较小，可以保证晶圆至少在与探头接触的一点处，与卡盘的间隙在一确定范围内，且该范围由传感器参数决定。这样即可较早判定“开始脱附”，并控制此时晶圆与卡盘的间隙。
+如图~\ref{fig:principle-gap-ruby-sch} ，将一个三坐标测量机标准红宝石探头（图中以红色圆形表示，实际为球面），安装在微力传感器上，即组成一微力探头，可实时通过传感器监测探头受力；由牛顿第三定律，该力与微力探头施加在晶圆上的支持力$N_{\mathrm{probe}}$大小相等。在晶圆吸附后，使微力探头与已吸附的晶圆表面垂直接触，并确保$N_{\mathrm{probe}} \ll F_{\mathrm{elec}}$；当静电卡盘正常工作时，可认为$N_{\mathrm{probe}} \approx 0$。当晶圆开始脱附时，卡盘表面不再向晶圆提供支持力，即$N_{\mathrm{chuck}} \to 0$，而逐渐转由探头向晶圆提供支持力，即$N_{\mathrm{probe}}$逐渐增加。由于力传感器自身具有一定弹性，在此期间容许晶圆有一定的挠度，但由于$N_{\mathrm{probe}}$绝对数值较小，可以保证晶圆至少在与探头接触的一点处，与卡盘的间隙在一确定范围内，且该范围由传感器参数决定。因此，通过使用微力探头，可以在控制间隙的同时，有效判定晶圆是否已经脱附或部分脱附。
 
 %TODO:introduce F-p curve schematic (or later?)
 
@@ -163,7 +163,7 @@ F_{\mathrm{elec}} = (p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} - p_0 \c
 
 \section{压强等效作用面积}\label{principle-area}
 
-气压平衡法中，另一个不确定度的来源是晶圆背面 气压等效作用面积，即\eqref{eq:principle-backside-force}中的$A_{\mathrm{back}}$。
+气压平衡法中，另一个不确定度的来源是晶圆背面气压等效作用面积，即\eqref{eq:principle-backside-force}中的$A_{\mathrm{back}}$。
 %TODO:cite nagoya
 由于陶瓷介电层上的凸台高度较低（约\SI{10}{\micro\meter}）与晶圆背面接触情况不明，尚不能直接断言$A_{\mathrm{back}}$等于晶圆背面所有未与陶瓷层凸台/边缘接触部分的面积。由于此处无法用普通CFD求解，需要设计额外的标定步骤，测出$A_{\mathrm{back}}$数值。
 
@@ -202,3 +202,4 @@ A_{\mathrm{back}} = \frac{2 G_{\mathrm{wafer}}}{p_{\mathrm{back},1} - p_{\mathrm
 
 
 %TODO:summarize what's included in the actual experiment
+\section{本章小结}\label{sec:principle-summary}
