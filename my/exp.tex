@@ -1,0 +1,44 @@
+% !TeX root = exp.tex
+\chapter{试验与数据分析}\label{ch:exp}
+
+%TODO:lead-in
+
+
+
+\section{试验方案}
+
+
+%TODO: relocate
+\subsection{检测流程}\label{sec:rig-overall-proc}
+
+一次完整的检测过程分如下步骤完成：
+
+\begin{enumerate}
+  \item 准备静电卡盘
+  \begin{enumerate}
+    \item 用无水乙醇擦拭静电卡盘与晶圆
+    \item 将晶圆小心地放置在静电卡盘陶瓷层正中央
+    \item 开启静电电源，调节电极电压至目标电压
+  \end{enumerate}
+  
+  \item 准备测量平台
+  \begin{enumerate}
+    \item 降下微力探头，使其轻轻接触晶圆
+    \item 确认背吹控制系统中调压装置均处于零位
+  \end{enumerate}
+  
+  \item 检测
+  \begin{enumerate}
+    \item 开始自动记录微力探头受力、背吹入口气压两变量
+    \item 背吹气压接通并缓慢、均匀地上升
+    \item 当微力探头受力即将达到其满量程时，自动切断背吹气压，检测停止
+  \end{enumerate}
+  
+  \item 后续处理
+  \begin{enumerate}
+    \item 导出采集到的数据
+    \item 微力探头复位上升
+    \item 切断静电电源，短接两电极引线，消除部分残余电荷
+    \item 小心将晶圆取下
+  \end{enumerate}
+\end{enumerate}

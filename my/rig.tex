@@ -1,22 +1,13 @@
 % !TeX root = ../main.tex
-\chapter{测量平台设计与搭建}
+\chapter{检测平台设计与搭建}\label{ch:rig}
+
+本章以上一章提出的测量方案为基础，讨论大气环境下的静电卡盘静电力检测平台的设计与搭建。由于检测平台是一个复杂的机、电、气相结合的系统，本章首先分析检测平台所需具有的功能、组成部分，提出其总体设计方案，然后分组件讨论检测平台各部分具体设计；最后，通过实际搭建、调试设计出的检测平台，验证了其性能满足静电力检测的需求。
 
 
 
 \section{总体设计}\label{sec:rig-overall}
 
-根据上文规划的测量方案以及实际需求，设计大气环境下的静电卡盘静电力检测平台，希望能达成如下目标：
-
-\begin{enumerate}
-  \item 实现用背吹平衡 -- 微力探头法检测静电力
-  \item 自动化检测过程，减小人为误差
-  \item 采集检测过程中各关键变量，方便后续数据处理与分析
-\end{enumerate}
-
-下面将详细阐述测量平台的设计方案。
-
-
-\subsection{测量平台组成}\label{sec:rig-overall-comp}
+为了实现用背吹平衡 -- 微力探头法测量静电力，需要检测平台具有的功能主要包括：对静电卡盘背吹通道气压的控制与检测、对微力探头的定位与受力检测、检测过程的自动控制、数据采集等。据此，可将整个平台划分为图~\ref{fig:rig-overall-sch}所示的几大组成部分：
 
 \begin{figure}[tbh]
 \centering
@@ -24,8 +15,6 @@
 \caption{测量平台总体设计示意}
 \label{fig:rig-overall-sch}
 \end{figure}
-
-如图~\ref{fig:rig-overall-sch}，整个测量平台由以下组件构成：
 
 \begin{itemize}
   \item 待测静电卡盘及其配套静电电源
@@ -35,42 +24,7 @@
   \item 电控与数据采集系统
 \end{itemize}
 
-除静电卡盘与电源外，其他组件均需自行设计、搭建。
-
-
-\subsection{检测流程}\label{sec:rig-overall-proc}
-
-一次完整的检测过程分如下步骤完成：
-
-\begin{enumerate}
-  \item 准备静电卡盘
-  \begin{enumerate}
-    \item 用无水乙醇擦拭静电卡盘与晶圆
-    \item 将晶圆小心地放置在静电卡盘陶瓷层正中央
-    \item 开启静电电源，调节电极电压至目标电压
-  \end{enumerate}
-  
-  \item 准备测量平台
-  \begin{enumerate}
-    \item 降下微力探头，使其轻轻接触晶圆
-    \item 确认背吹控制系统中调压装置均处于零位
-  \end{enumerate}
-  
-  \item 检测
-  \begin{enumerate}
-    \item 开始自动记录微力探头受力、背吹入口气压两变量
-    \item 背吹气压接通并缓慢、均匀地上升
-    \item 当微力探头受力即将达到其满量程时，自动切断背吹气压，检测停止
-  \end{enumerate}
-  
-  \item 后续处理
-  \begin{enumerate}
-    \item 导出采集到的数据
-    \item 微力探头复位上升
-    \item 切断静电电源，短接两电极引线，消除部分残余电荷
-    \item 小心将晶圆取下
-  \end{enumerate}
-\end{enumerate}
+其中除静电卡盘与电源外，其他组件均需自行设计。
 
 
 
@@ -331,3 +285,6 @@
 
 
 \section{搭建与调试}\label{sec:rig-build}
+
+
+
