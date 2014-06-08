@@ -1,0 +1,46 @@
+\documentclass{article}
+
+
+\usepackage{tikz-timing}
+\usetikztiminglibrary{clockarrows}
+\usetikztiminglibrary{either}
+\usetikztiminglibrary{overlays}
+
+\begin{document}
+
+\texttiming{Z 2D O{{[dotted]28D{abc}}}{28S} 2D Z}
+
+\begin{figure}
+\centering
+\begin{tikztimingtable}
+  [ timing/slope=0.2
+  , timing/coldist=12pt % column distance
+  , xscale=0.60,yscale=1.20 % scale diagrams
+  , timing/c/arrow pos=0.7
+  , timing/c/arrow tip=stealth
+  ]
+{AD7730 nRDY} & []%
+  H 2L L 7{2L} 9{2E}                 H 32H                        H \\
+{AD7730 nCS}  & []%
+  H 2H L 32L                         H 32H                        H \\
+{AD7730 SCLK} & [timing/c/falling arrows]%
+  L 2L L 32{C}                       L 32L                        L \\
+{AD7730 MISO} & []%
+  Z 2Z Z 16D{MSByte} 16D{LSByte}     Z 32Z                        Z \\
+\\
+{AD7686 CNV}  & []%
+  L 2L H 32H                         L 32L                        L \\
+{AD7686 SCK}  & [timing/c/rising arrows]%
+  L 2L L 32L                         L 0C0C 32{C}                 L \\
+{AD7686 MISO} & []%
+  Z 2Z Z 32Z                      0.5Z 16D{MSByte} 16D{LSByte} 1.5Z \\
+\extracode
+  \begin{scope}[on background layer, help lines]
+    \vertlines[red]{1}
+    \vertlines[olive]{3,36}
+  \end{scope}
+\end{tikztimingtable}
+\caption{timing}
+\label{fig:test}
+\end{figure}
+\end{document}

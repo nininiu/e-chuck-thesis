@@ -1,23 +1,23 @@
 % !TeX root = ../main.tex
 \chapter{测量方案设计}\label{ch:principle}
 
-已有的静电力测量方法均具有较大的不确定性。为了得到更准确、可信的测量结果，需解决一些已有方案中的共有问题，并尽可能减小乃至消除测量中的不确定性，设计出新的测量方案。由于除背吹平衡法以外的方案均在原理上就具有较大不确定度（见\ref{sec:priorArt}），本章以背吹平衡法作为基础来设计新方案。
+已有的静电力测量方法均具有较大的不确定性。为了得到更准确、可信的测量结果，需解决一些已有方案中的共有问题，并尽可能减小乃至消除测量中的不确定性，设计出新的测量方案。由于除背吹平衡法以外的方案均在原理上就具有较大不确定度（见\ref{sec:priorArt}节），本章以背吹平衡法作为基础来设计新方案。
 
 
 
-\section[背吹法原理分析]{背吹平衡法原理分析}\label{sec:principle-backside}
+\section{背吹平衡法原理分析}\label{sec:principle-backside}
 
 
 \subsection{受力分析}\label{sec:principle-backside-force}
 
-\begin{figure}[hbt]
+\begin{figure}[tbh]
 \centering
 \includegraphics[width=1\linewidth]{principle/force__orig}
-\caption[背吹平衡法晶圆受力]{背吹平衡法中晶圆受力分析图}
+\caption{背吹平衡法中晶圆受力分析}
 \label{fig:principle-backside-force}
 \end{figure}
 
-当静电卡盘处于正常工作状态时，晶圆牢固吸附在静电卡盘表面，其受力分析如图~\ref{fig:principle-backside-force}，有：
+当静电卡盘处于正常工作状态时，晶圆牢固吸附在静电卡盘表面，其受力情况如图~\ref{fig:principle-backside-force}，处于平衡状态，有：
 \begin{equation}
 \label{eq:principle-backside-force}
 (p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} + N_{\mathrm{chuck}} = p_0 \cdot A_{\mathrm{all}} + G_{\mathrm{wafer}} + F_{\mathrm{elec}}
@@ -26,80 +26,88 @@
 \begin{itemize}
   \item $p_{0}$ : 环境压强（绝对）
   \item $p_{\mathrm{back}}$  : 背吹压强（相对于$p_{0}$）
-  \item $A_{\mathrm{back}}$  : 晶圆背面气压等效作用面积（见\ref{principle-area}）
+  \item $A_{\mathrm{back}}$  : 晶圆背面气压等效作用面积（见\ref{principle-prob-area}节）
   \item $A_{\mathrm{all}}$   : 晶圆总面积
   \item $N_{\mathrm{chuck}}$ : 静电卡盘表面向晶圆提供的总支持力
   \item $G_{\mathrm{wafer}}$ : 晶圆总重力
   \item $F_{\mathrm{elec}}$  : 晶圆所受总静电吸引力
 \end{itemize}
 当晶圆即将脱附时，有 $N_{\mathrm{chuck}} \to 0$ ；此时 \eqref{eq:principle-backside-force} 可近似为：
-\begin{equation*}
-\label{eq:principle-backside-force'}
+\[
 (p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} = p_0 \cdot A_{\mathrm{all}} + G_{\mathrm{wafer}} + F_{\mathrm{elec}}
-\end{equation*}
+\]
 即：
 \begin{equation}
-\label{eq:principle-backside-force''}
+\label{eq:principle-backside-force-derived}
 F_{\mathrm{elec}} = (p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} - p_0 \cdot A_{\mathrm{all}} - G_{\mathrm{wafer}}
 \end{equation}
+
+虽然分析时将重力与支持力简化等效为集中力，实际上晶圆受到的包括重力与支持力在内的所有力均为分布力。因此，若假设静电力分布足够均匀，上述分析同样适用于晶圆局部。
 
 
 \subsection{脱附条件}\label{sec:principle-backside-dechuck}
 
-背吹平衡法需要\emph{制造}并\emph{检测}晶圆即将脱附至完全脱附的状态，从而间接获得静电力大小。制造脱附条件的基本方法是使背吹压力相对于静电吸引力更大，可通过提高气压、降低电压等方式实现（见 \ref{sec:priorArt-backside} ）。检测脱附的方法主要是监测晶圆在脱附时产生变化的物理量，如位移/挠度、电极回路电流、背吹回路压强/流量等。 %TODO:analysis/xref
+背吹平衡法中，需人为产生并检测晶圆即将脱附至完全脱附的状态，从而间接获得静电力大小。制造脱附条件的基本方法是使背吹压力相对于静电吸引力更大，可通过提高气压、降低电压等方式实现（见\ref{sec:priorArt-backside}节）。检测脱附的基本方法是监测晶圆在脱附时产生变化的物理量，如位移（晶圆挠度）、电极电压/电流、背吹压强/流量等。%TODO:analysis/xref
 
 
 
-\section{试验环境}\label{sec:principle-env}
-
-静电卡盘最常见的工作条件是在工艺腔室中，周围环境为真空，有时存在等离子体（单极型静电卡盘必须有等离子体存在才能产生静电吸引力）。已有方案大多选择同样在真空腔室中进行测量，甚至加入等离子体，以复现实际工艺条件。虽然这样可能有助于提高测试结果的准确度，但在真空与等离子体条件下试验存在如下问题：
-\begin{itemize}
-  \item 需要围绕选定的静电卡盘及试验用到的各种装置搭建专用真空腔室，其设计复杂，加工要求高；一旦更换被测静电卡盘型号，需重新设计腔室及配套系统；这部分的工作量与复杂程度甚至已经逼近刻蚀机的核心部分。
-  \item 抽真空需使用真空泵，花费数小时才能达到真空，若需打开腔室进行调整，则需先平衡气压，再改动，再抽真空；费时费力。
-  \item 真空下，背吹气体泄漏率较高 %TODO:xref/cite
-  ，该流动过程可能对晶圆受力产生影响（见\ref{sec:principle-flow}节），使数据处理变得复杂。
-  \item 有等离子体存在的时候，卡盘上方的空间基本无法放置任何测量装置（否则会遮挡等离子体，或与等离子体互相干扰），这为测量方案的设计带来了相当大的障碍。
-\end{itemize}
-
-因此，新方案将首先为大气环境设计，如可能，兼顾在真空条件下使用（原理不变，装置修改尽量小），但不考虑等离子体。
+\clearpage
 
 
 
-\section{背吹通道流动}\label{sec:principle-flow}
-
-已有背吹平衡方案均假定晶圆背面受均匀压强作用，但未论证该假设的合理性 ---  即，背吹通道中存在的稳态流动是否会影响晶圆背面受力情况？若有，则测量方案的准确度可能会受到影响。因此，有必要分析晶圆背面的流动情况。
+\section{背吹平衡法中存在的问题}\label{sec:principle-prob}
 
 
-\subsection{建立CFD模型}\label{sec:principle-flow-cfd-setup}
+\subsection{工作环境}\label{sec:principle-prob-env}
+
+静电卡盘常见于工艺腔室中，其内部为真空或绝对压强极低的等离子体（单极型静电卡盘必须在等离子体存在的环境中才能工作）。已有检测方案大多设计为在真空条件、甚至等离子体条件下工作，以复现实际工艺条件。虽然这样可能有助于提高测试结果的准确度，但在真空与等离子体条件下试验存在如下问题：无论等离子存在与否，均需围绕选定的静电卡盘及检测仪器等设计并搭建专真空腔室，系统组成极为复杂，难度与刻蚀机核心部分设计相当。即使已有合适的腔室与配套设备，在开始检测之前，需等待真空泵将腔室抽成真空，时间长达数小时，而一旦需打开腔室进行调整，必须在此之前平衡气压，调整后再花费数小时抽真空，效率极低。此外，当等离子体存在时，晶圆上方大部分空间无法放置任何物体，以避免等离子体受到遮挡或与异物产生相互作用；这对测量系统的设计是过于苛刻的约束条件。
+
+
+\subsection{间隙与部分脱附}\label{principle-prob-gap}
+
+已有脱附试验（包括但不限于背吹平衡法）中存在一个共有问题：当\emph{检测}到脱附时，晶圆实际已部分脱附，即脱附是一连续变化的过程 %TODO:cite 曹明路
+；此时晶圆与卡盘的间隙大于未脱附（正常工作）时，而%TODO:xref bg equations
+\begin{comment}
+根据，
+\end{comment}
+静电力随着间隙扩大急剧下降，导致测得的静电力一定小于工作状态静电力，即测量存在较大系统误差。如能设法减小该误差，则可提高测量的准确度。
+
+误差的消除需要更好的脱附检测手段。虽然瞬态过程（如晶圆突然出现明显脱附等）容易检测且不易误判，但此时晶圆并非处于平衡态，且其在微观上可能已大部分脱附，加上检测仪器的响应延迟（精度较高的仪器往往延迟也更大），对系统误差影响极大。为避免瞬态过程带来的系统误差，应维持系统处于准静态或缓变过程中。然后，为了减小部分脱附对检测产生的影响，需快速、准确地判定刚刚开始脱附这一现象；此时间隙未明显扩大，静电力相对于工作状态未出现明显偏差，即减小了系统误差。为此，需选取合适的脱附特征物理量，并设计对应检测手段，改进脱附判定。
+
+
+\subsection{背吹通道流动}\label{sec:principle-prob-flow}
+
+已有背吹平衡方案均假定晶圆背面受均匀压强作用，但未论证该假设的合理性：背吹通道中存在的流动是否会影响晶圆背面受力情况？若有，则测量方案的准确度可能会受到影响。因此，有必要分析晶圆背面的流动情况。
+
+\subsubsection{建立CFD模型}\label{sec:principle-prob-flow-cfd-setup}
 
 为了方便后续仿真工作的开展，此处选择Comsol作为仿真软件；先搭建简化模型，做出基本判断，再根据后续试验需要，进一步添加细节，提高仿真准确度。
 
-\begin{figure}[hbt]
+\begin{figure}[tbh]
 \centering
 \includegraphics[width=0.72\linewidth]{principle/cfd__setup}
-\caption[CFD建模示意]{Wafer背面流动CFD建模示意}
+\caption{晶圆背面流动CFD建模示意}
 \label{fig:principle-flow-cfd-setup}
 \end{figure}
 
-根据静电卡盘几何尺寸，估计流动为充分发展的平板层流，选用\verb|spf|模块求解。几何模型选用\verb|2D Axisymmetric|（即旋转体），流道截面如图~\ref{fig:principle-flow-cfd-setup} 
-\footnote{此处流道宽度由陶瓷介电层表面的凸台高度决定，但为了简化分析起见，暂时忽略凸台影响。}
-；在正中间设一圆柱形进气口，直径\SI{1}{\mm}，固定其压力为\SI{2}{\kPa}表压；在边缘处用均匀圆环形狭缝来等效晶圆与陶瓷介电层的接触密封，外侧设为出口，固定为大气压。
+由待测静电卡盘\footnote{具体参数见\ref{sec:rig-overall}节。}背吹通道特点知，流动主要为平板间层流，因此选用层流模块（\bverb|spf|）求解。几何模型选用二维轴对称（2D Axisymmetric，即纯旋转体），流道截面如图~\ref{fig:principle-flow-cfd-setup}\footnotemark{}；在正中间设一圆柱形进气口，直径\SI{1}{\mm}，固定其压力为\SI{2}{\kPa}表压；在边缘处用均匀圆环形狭缝来等效晶圆与陶瓷介电层的接触密封，外侧设为出口，固定为大气压。
 
-由于对实际接触密封情况不是很了解，设定参数扫描，求解狭缝宽度为\verb|10^{range(0,-1/2,-1)}[um]|，即1到\SI{0.1}{\micro\meter}对数等间隔时的流动情况。
+\footnotetext{此处流道宽度由陶瓷介电层表面的凸台高度决定，但为了简化分析起见，暂时忽略凸台影响。}
 
+由于目前对接触密封的了解尚少，无法准确估计等效狭缝宽度，因此设定参数扫描，求解当狭缝宽度为$\SIrange{1}{0.1}{\micro\meter}$（\bverb|10^{range(0,-1/2,-1)}[um]|）时的流动情况。
 
-\subsection{CFD仿真结果}\label{sec:principle-flow-cfd-result}
+\subsubsection{CFD仿真结果}\label{sec:principle-prob-flow-cfd-result}
 
 当狭缝宽度改变时，速度场变化不大，最大速度均出现在进口附近，之后速度迅速衰减至稳定，如图~\ref{fig:principle-flow-cfd-result-vel} 。
 
 %TODO:动量呢？
 
-在入口处对$v_z\ \rho$取面积分，得到质量流量如表\ref{tab:principle-flow-cfd-result-flow}。单位\si[per-mode=symbol]{\mg\per\minute}大致与sccm相当，即质量流量在狭缝宽\SI{1}{\micro\meter}时，仍低于1 sccm；狭缝变窄时，流量得非常快。这说明只要密封处的实际表面粗糙度足够低，接触足够紧密，则气体泄漏几乎可忽略不计；若安装流量计，则应选取较小量程的型号（一般为10 sccm）。
+在入口处对$v_z\ \rho$取面积分，得到质量流量如表\ref{tab:principle-flow-cfd-result-flow}。单位\si{\mg\per\minute}大致与sccm相当，即质量流量在狭缝宽\SI{1}{\micro\meter}时，仍低于1 sccm；狭缝变窄时，流量得非常快。这说明只要密封处的实际表面粗糙度足够低，接触足够紧密，则气体泄漏几乎可忽略不计；若安装流量计，则应选取较小量程的型号（一般为10 sccm）。
 
 沿模型上边界（即晶圆下表面）绘制压强 -- 半径曲线，如图~\ref{fig:principle-flow-cfd-result-pressure} ，发现在流道中段压降满足$\Delta p \propto \log{r}$。 %TODO:derive by hand
 当狭缝宽\SI{1}{\micro\meter}时，在中段存在明显压降（约\SI{0.6}{\kPa}），显然\textbf{不能忽略}；但当狭缝更窄时，压降迅速衰减，当狭缝宽\SI{0.3}{\micro\meter}时已可忽略。当然，这是假定只有卡盘中央有一个气孔的时候的情形，而实际的静电卡盘为了控制温度分布均匀，在整个表面多处分布气孔，可使压强分布更均匀。即便如此，在处理实验数据时，应小心验证压强分布（可进一步构建三维流道模型以得到更准确的仿真数据），不能直接认为晶圆受均匀气压作用。
 
-\begin{table*}[hbp]
+\begin{table*}[thbp]
 \centering
 \caption[CFD结果：质量流量]{CFD仿真结果：进口处质量流量}
 \label{tab:principle-flow-cfd-result-flow}
@@ -128,58 +136,55 @@ F_{\mathrm{elec}} = (p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} - p_0 \c
 \label{fig:principle-flow-cfd-result-pressure}
 \end{figure}
 
+
 \clearpage
 
 
+\subsection{压强等效作用面积}\label{principle-prob-area}
 
-\section{间隙与部分脱附}\label{principle-gap}
-
-已有脱附试验中（不限于背吹法）另一个共有问题：当\textbf{检测}到脱附时，晶圆实际已部分脱附，即脱附是一连续变化的过程  %TODO:cite 曹明路
-；此时晶圆与卡盘的间隙大于未脱附（正常工作）时，而%TODO:xref bg equations
-\begin{comment}
-根据，
-\end{comment}
-静电力随着间隙扩大急剧下降，导致测得的静电力一定小于工作状态静电力，即测量存在较大系统误差。如能设法减小该误差，则可提高测量的准确度。
-
-首先，虽然瞬态过程（如晶圆突然出现明显脱附等）容易检测，但此时晶圆并非处于平衡态（微观上可能已大部分脱附），且各种测量仪器均有不同程度的响应延迟（精度较高的仪器往往延迟也更大）；这些因素均可产生系统误差。因此，应尽可能维持整个测量系统在准静态条件下。
-
-然后，为了尽可能消除部分脱附的影响，希望能在整个脱附过程中尽可能早地检测到“脱附已开始”这一转折点；若此时间隙未明显扩大，则可认为静电力相对于工作状态偏差不大，系统误差减小。这需要选取合适的脱附特征物理量，并在尽量避免误判的同时，提高检测灵敏度。
-
-
-\subsection{用微力探头减小间隙影响}\label{principle-gap-ruby}
-
-\begin{figure}[tbhp]
-\centering
-\includegraphics[width=1\linewidth]{principle/gap__ruby__sch}
-\caption{微力探头原理示意}
-\label{fig:principle-gap-ruby-sch}
-\end{figure}
-
-如图~\ref{fig:principle-gap-ruby-sch} ，将一个三坐标测量机标准红宝石探头（图中以红色圆形表示，实际为球面），安装在微力传感器上，即组成一微力探头，可实时通过传感器监测探头受力；由牛顿第三定律，该力与微力探头施加在晶圆上的支持力$N_{\mathrm{probe}}$大小相等。在晶圆吸附后，使微力探头与已吸附的晶圆表面垂直接触，并确保$N_{\mathrm{probe}} \ll F_{\mathrm{elec}}$；当静电卡盘正常工作时，可认为$N_{\mathrm{probe}} \approx 0$。当晶圆开始脱附时，卡盘表面不再向晶圆提供支持力，即$N_{\mathrm{chuck}} \to 0$，而逐渐转由探头向晶圆提供支持力，即$N_{\mathrm{probe}}$逐渐增加。由于力传感器自身具有一定弹性，在此期间容许晶圆有一定的挠度，但由于$N_{\mathrm{probe}}$绝对数值较小，可以保证晶圆至少在与探头接触的一点处，与卡盘的间隙在一确定范围内，且该范围由传感器参数决定。因此，通过使用微力探头，可以在控制间隙的同时，有效判定晶圆是否已经脱附或部分脱附。
-
-%TODO:introduce F-p curve schematic (or later?)
-
-
-
-\section{压强等效作用面积}\label{principle-area}
-
-气压平衡法中，另一个不确定度的来源是晶圆背面气压等效作用面积，即\eqref{eq:principle-backside-force}中的$A_{\mathrm{back}}$。
+\eqref{eq:principle-backside-force}式中，晶圆背面气压等效作用面积（即$A_{\mathrm{back}}$）是未知量。
 %TODO:cite nagoya
 由于陶瓷介电层上的凸台高度较低（约\SI{10}{\micro\meter}）与晶圆背面接触情况不明，尚不能直接断言$A_{\mathrm{back}}$等于晶圆背面所有未与陶瓷层凸台/边缘接触部分的面积。由于此处无法用普通CFD求解，需要设计额外的标定步骤，测出$A_{\mathrm{back}}$数值。
 
 
-\subsection{自重平衡法}\label{sec:principle-area-gravity}
+
+\section{改进方案设计}\label{principle-soln}
+
+
+\subsection{工作环境}\label{principle-soln-env}
+
+由\ref{sec:principle-prob-env}节中讨论，真空与等离子体环境均不利于检测系统的设计、实现与使用，因此改进方案为在大气环境下使用设计，并可在不改变主要原理的条件下，经过尽可能少的修改，移植到真空腔室中；等离子体环境不予考虑。
+
+
+\subsection{引入微力探头判定脱附}\label{principle-soln-ruby}
+
+\begin{figure}[tbhp]
+\centering
+\includegraphics[width=1\linewidth]{principle/soln__ruby__sch}
+\caption{微力探头原理示意}
+\label{fig:principle-soln-ruby-sch}
+\end{figure}
+
+考虑\ref{sec:principle-backside-force}节中的受力平衡关系。虽然在即将脱附时，$N_{\mathrm{chuck}} \to 0$，但此时存在\ref{principle-prob-gap}节中阐述的间隙扩大问题。如果希望抑制间隙扩大，则必须向晶圆施加一个向下的力$N'$。注意即使晶圆在即将脱附时，其在$N'$作用下仍处于平衡状态，且力平衡方程变为：
+\begin{equation}
+\label{eq:principle-soln-ruby-force}
+(p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} + N_{\mathrm{chuck}} = p_0 \cdot A_{\mathrm{all}} + G_{\mathrm{wafer}} + F_{\mathrm{elec}} + \mathbf{N'}
+\end{equation}
+若$N'$大小可测量，则可将其作为脱附特征物理量，准确判定部分脱附。据此设计微力探头，如图~\ref{fig:principle-soln-ruby-sch}，其组成为一单轴微力传感器以及连接在其上的标准三坐标测量机红宝石探头（图中以红色圆形表示，实际为球体）。晶圆吸附后，使红宝石探头与已吸附的晶圆表面接触，探头方向垂直于晶圆表面，则由牛顿第三定律，传感器受到的压缩力和探头施加在晶圆上的支持力$N_{\mathrm{probe}}$大小相等\footnotemark{}；若采取措施确保此时$N_{\mathrm{probe}} \ll F_{\mathrm{elec}}$，则可认为$N_{\mathrm{probe}} \approx 0$。逐渐增加背吹气压，直至晶圆脱附这一过程中，$N_{\mathrm{chuck}} \to 0$，并逐渐转由探头向晶圆提供支持力，即$N_{\mathrm{probe}}$明显增加，可作为判定晶圆开始脱附的根据。由于传感器自身具有一定弹性（在量程范围内可等效为一理想弹簧），晶圆在与探头接触的一点仍有一定挠度，但由胡克定律$F = k x$知，该点挠度可由测得的$N_{\mathrm{probe}}$和传感器刚度$k$计算出，并且对于给定传感器，$k$已知，而$N_{\mathrm{probe}}$可人为地在传感器量程内选取有效取值区间，因此在判定脱附时，该挠度也处于一个确定的取值区间内，即晶圆与卡盘的间隙得到了控制。
+
+\footnotetext{即为上文$N'$；另外，下文中不再区分这一对反作用力，仅用$N_{\mathrm{probe}}$表示其大小。}
+
+
+\subsection{晶圆自重平衡法求压强等效面积}\label{sec:principle-soln-gravity}
 
 \begin{figure}[tbhp]
 \centering
 \includegraphics[width=1\linewidth]{principle/area__gravity__sch}
-\caption[自重法测等效面积示意]{利用自重平衡法测量压强等效作用面积示意}
+\caption{晶圆自重平衡法求压强等效作用面积示意}
 \label{fig:principle-area-gravity-sch}
 \end{figure}
 
-一种可行的测量方法如图~\ref{fig:principle-area-gravity-sch}。注意到在晶圆受力平衡关系中，只有重力的方向是任意的，其他力相对于卡盘坐标系的方向均固定。若将整个系统上下倒转\ang{180}，则相当于只有重力的方向发生变化，进而将压强与已知大小的力建立对应关系，得到等效面积大小。
-
-具体方法：分别在试验台正放和倒放两种状态下，加相同电压，完成背吹平衡试验，得到即将脱附时的背吹压强分别为$p_{\mathrm{back},1}$和$p_{\mathrm{back},2}$（可分别多做几组，取平均值，以减小随机误差干扰）。根据受力平衡关系有：
+建立一个固连在静电卡盘上的坐标系，注意到在晶圆受力平衡关系中，除重力以外，其他力相对于该坐标系的方向均固定，而重力方向随着静电卡盘姿态改变而改变。若将静电卡盘上下倒转\ang{180}，则相对于静电卡盘坐标系，只有晶圆受到的重力方向反转。据此可求出压强等效面积：分别在试验台正放和倒放两种状态下，加相同电压，完成背吹平衡试验，得到即将脱附时的背吹压强分别为$p_{\mathrm{back},1}$和$p_{\mathrm{back},2}$（可通过多次测量取平均值的方法来减小随机误差）。根据受力平衡关系有：
 \begin{equation}
 \label{eq:principle-area-gravity-orig}
 \begin{aligned}
@@ -196,10 +201,10 @@ F_{\mathrm{elec}} = (p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} - p_0 \c
 \label{eq:principle-area-gravity-derived}
 A_{\mathrm{back}} = \frac{2 G_{\mathrm{wafer}}}{p_{\mathrm{back},1} - p_{\mathrm{back},2}}
 \end{equation}
-即求得$A_{\mathrm{back}}$数值。需要注意的是，$A_{\mathrm{back}}$可能与所加电压、晶圆材料、厚度等各种参数相关，需改变条件，多次试验，求出$A_{\mathrm{back}}$对各参数的敏感度。
+即求得$A_{\mathrm{back}}$数值。需要注意的是，$A_{\mathrm{back}}$可能与所加电压、晶圆材料、厚度等各种参数相关，可改变条件，多次试验，得出$A_{\mathrm{back}}$对各参数的敏感度。
 
 
 
-
-%TODO:summarize what's included in the actual experiment
 \section{本章小结}\label{sec:principle-summary}
+
+本章首先分析了原有背吹平衡法检测静电力的工作原理，指出了其中存在的影响测量准确性的因素，包括晶圆部分脱附、晶圆与静电卡盘间存在的间隙扩大、背吹通道流动对晶圆背面压强分布的影响、以及压强等效作用面积等，进而针对其中最主要的部分脱附、间隙、以及压强等效作用面积问题，提出微力探头、自重平衡两种措施作为改进方案，并阐明了其减小原有方案中误差的原理。
