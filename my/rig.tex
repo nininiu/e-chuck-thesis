@@ -7,7 +7,7 @@
 
 \section{总体设计方案}\label{sec:rig-overall}
 
-根据已有背吹平衡方案，以及\ref{principle-soln}节中提出的改进措施（主要是微力探头），确定检测平台必须具有的功能如下：对静电卡盘背吹通道气压的控制与检测、对微力探头的定位与受力检测、检测过程的自动控制、数据采集与储存等。据此，可将整个平台划分为图~\ref{fig:rig-overall-sch}所示的几大组成部分：
+根据已有背吹平衡方案，以及\ref{principle-soln}节中提出的改进措施（主要是微力探头），确定检测平台必须具有的功能如下：对静电卡盘背吹通道气压的控制与检测、对微力探头的定位与受力检测、检测过程的自动控制、数据采集与储存等。据此，可将整个平台划分为图~\ref{fig:rig-overall-sch}~所示的几大组成部分：
 
 \begin{figure}[tbh]
 \centering
@@ -247,21 +247,31 @@ v \leq \SI{100}{\micro\meter\per\second}
 
 该连接板位于整个测试平台中心，其尺寸与配合特征主要由静电卡盘决定，并间接决定了整个框架的尺寸。静电卡盘通过螺钉紧固在连接板上，因此连接板需提供相配合的螺纹孔与承载面。如图~\ref{fig:rig-model-echuck-back}\footnotemark{}，静电卡盘的底部有多个功能特征，除氦气背吹接口需特殊设计外，其他特征（如直流电极接口、顶针孔等）均需裸露在外以正常使用，因此连接板上对应位置开槽。背吹通道入口并未采用常见的螺纹连接方式，而是一$\diameter{}4$光孔，需设计密封接头与之相连。如图~\ref{fig:rig-model-echuck-plug-assy}，用三个紧定螺钉使密封接头上表面与卡盘背面紧密配合，通过标准O型圈形成端面密封；其另一端提供M5内螺纹，与标准气动快装接头连接。
 
+由于连接板图纸幅面较大，此处仅展示其等轴测图（图~\ref{fig:rig-model-echuck-base-iso}）。
+
 \footnotetext{北方微电子公司内部图纸，仅保留轮廓与功能描述。}
 
-\begin{figure}[tbhp]
+\begin{figure}[p]
 \centering
 \includegraphics[height=0.45\textheight]{rig/model__echuck__back}
 \caption{静电卡盘背面特征工程图}
 \label{fig:rig-model-echuck-back}
 \end{figure}
 
-\begin{figure}[tbhp]
+\begin{figure}[p]
 \centering
 \includegraphics[height=0.45\textheight]{rig/model__echuck__plug__assy2}
 \caption{端面密封设计工程图}
 \label{fig:rig-model-echuck-plug-assy}
 \end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.618\textwidth]{rig/model__echuck__base__iso}
+\caption{静电卡盘连接板等轴测图}
+\label{fig:rig-model-echuck-base-iso}
+\end{figure}
+%TODO:fix the layout!
 
 
 \subsection{型材框架主体}\label{sec:rig-model-frame}
@@ -271,21 +281,21 @@ v \leq \SI{100}{\micro\meter\per\second}
 
 \subsection{微力探头部分}\label{sec:rig-model-probe}
 
-由于红宝石探头的连接螺纹为M2外螺纹，LSB200的连接螺纹为M3内螺纹，设计螺纹转接头如图~\ref{fig:rig-model-probe-connLSBRuby}。由\ref{sec:rig-probe-feeding}节中讨论，需设计微力探头组件位置粗调结构。考虑到LAC-10A电动推杆的行程为\SI{10}{\milli\meter}，采用最简单易行的设计（三维模型中已表示出）：在框架结构上部加装可自由调节位置的型材组，由横、竖两根型材构成；横梁用螺栓、大垫圈、T槽螺母连接在框架上层四边形的下面；竖梁使用$\num{60}\times\num{60}\times\SI{30}{\milli\meter}$角件与横梁连接。在此基础上，设计微力探头组件连接板如图~\ref{fig:rig-model-probe-connBridgeProbesMain}；连接板与LAC-10A通过图~\ref{fig:rig-model-probe-connBridgeProbesTab}所示连接 块、沉头螺钉相连，与JYPY-02213通过沉头螺钉相连。连接板本身可通过螺栓与T槽螺母可紧固在竖梁任意位置。这样即可手动大范围调节微力探头在空间中的位置。
+由于红宝石探头的连接螺纹为M2外螺纹，LSB200的连接螺纹为M3内螺纹，设计螺纹转接头如图~\ref{fig:rig-model-probe-connLSBRuby}。由\ref{sec:rig-probe-feeding}节中讨论，需设计微力探头组件位置粗调结构。考虑到LAC-10A电动推杆的行程为\SI{10}{\milli\meter}，采用最简单易行的设计（三维模型中已表示出）：在框架结构上部加装可自由调节位置的型材组，由横、竖两根型材构成；横梁用螺栓、大垫圈、T槽螺母连接在框架上层四边形的下面；竖梁使用$\num{60}\times\num{60}\times\SI{30}{\milli\meter}$角件与横梁连接。在此基础上，设计微力探头组件连接板如图~\ref{fig:rig-model-probe-connBridgeProbesMain}；连接板与LAC-10A通过图~\ref{fig:rig-model-probe-connBridgeProbesTab}~所示连接 块、沉头螺钉相连，与JYPY-02213通过沉头螺钉相连。连接板本身可通过螺栓与T槽螺母可紧固在竖梁任意位置。这样即可手动大范围调节微力探头在空间中的位置。
 这一部分整体三维模型如图~\ref{fig:rig-model-probe}；其中两组微力探头是为了同时在图中表示探头与LAC-10A和JYPY-02213的连接方式，实际仅选装一组。
 
 %TODO:conn JYPY LSB
 
-\begin{figure}[tbh]
+\begin{figure}[p]
 \centering
-\includegraphics[width=0.6\linewidth]{rig/model__probe__connLSBRuby}
+\includegraphics[width=0.618\linewidth]{rig/model__probe__connLSBRuby}
 \caption{M2$\to$M3 螺纹转接头零件图}
 \label{fig:rig-model-probe-connLSBRuby}
 \end{figure}
 
-\begin{figure}[tbh]
+\begin{figure}[p]
 \centering
-\includegraphics[height=0.40\textheight]{rig/model__probe.png}
+\includegraphics[height=0.35\textheight]{rig/model__probe.png}
 \caption{探头组件数字模型}
 \label{fig:rig-model-probe}
 \end{figure}
@@ -356,7 +366,7 @@ v \leq \SI{100}{\micro\meter\per\second}
 
 \subsection{电子比例阀接口}\label{sec:rig-ctrl-intf-reg}
 
-\ref{sec:rig-pressure-supply-integrated}节中提到的压力控制器或电子比例阀接受的设定点输入分为两种：模拟电压信号、\SIrange{4}{20}{\milli\ampere}模拟电流环信号。模拟电压输入可直接通过单片机内置DAC（输出范围\SIrange{0}{3.3}{\volt}）经一级放大滤波得到，其原理图与图\ref{fig:rig-ctrl-intf-loop-sch-sample}中采样电阻之后的部分基本相同，不再赘述。模拟电流输入可用AD420集成电流输出DAC提供，接法如图~\ref{fig:rig-ctrl-intf-ad420}。
+\ref{sec:rig-pressure-supply-integrated}节中提到的压力控制器或电子比例阀接受的设定点输入分为两种：模拟电压信号、\SIrange{4}{20}{\milli\ampere}模拟电流环信号。模拟电压输入可直接通过单片机内置DAC（输出范围\SIrange{0}{3.3}{\volt}）经一级放大滤波得到，其原理图与图\ref{fig:rig-ctrl-intf-loop-sch-sample}~中采样电阻之后的部分基本相同，不再赘述。模拟电流输入可用AD420集成电流输出DAC提供，接法如图~\ref{fig:rig-ctrl-intf-ad420}。
 
 \begin{figure}[tbhp]
 \centering
@@ -433,7 +443,7 @@ LSB200主要参数：阻值\SI{1000}{\ohm}，标称满量程输出\SI{0.5}{\mill
 
 \subsection{微控制器单元(MCU)}\label{sec:rig-ctrl-mcu}
 
-由于电控系统无占用空间、耗电等特殊需求，选择常用的具有较强处理能力以及丰富外设的STM32F1系列ARM Cortex-M3内核32位MCU，以方便后续开发与扩展。结合图~\ref{fig:rig-ctrl-sch}以及各接口电路具体设计，规划MCU外设与针脚资源如图~\ref{fig:rig-ctrl-mcu-pinout}：\bverb|SPI1|及附近针脚连接压强采样ADC（AD7686，见\ref{sec:rig-ctrl-intf-loop}节），\bverb|SPI2|及附近针脚连接微力传感器采样ADC（AD7730，见\ref{sec:rig-ctrl-intf-strain}节）；定时器\bverb|TIM4|向步进电机驱动器输出脉冲，外部中断\bverb|EXTI14|处理电动推杆零位传感器信号（\ref{sec:rig-ctrl-intf-stepper}节）；\bverb|DAC|向电子比例阀接口（\ref{sec:rig-ctrl-intf-reg}节）提供设定点模拟信号；串口\bverb|USART1|与PC交换数据，\bverb|USART2|保留供MCU通过HART主机模块自动配置压强变送器，\bverb|USART3|保留供其他可能加入电控系统的串口外设使用。
+由于电控系统无占用空间、耗电等特殊需求，选择常用的具有较强处理能力以及丰富外设的STM32F1系列ARM Cortex-M3内核32位MCU，以方便后续开发与扩展。结合图~\ref{fig:rig-ctrl-sch}~以及各接口电路具体设计，规划MCU外设与针脚资源如图~\ref{fig:rig-ctrl-mcu-pinout}：\bverb|SPI1|及附近针脚连接压强采样ADC（AD7686，见\ref{sec:rig-ctrl-intf-loop}节），\bverb|SPI2|及附近针脚连接微力传感器采样ADC（AD7730，见\ref{sec:rig-ctrl-intf-strain}节）；定时器\bverb|TIM4|向步进电机驱动器输出脉冲，外部中断\bverb|EXTI14|处理电动推杆零位传感器信号（\ref{sec:rig-ctrl-intf-stepper}节）；\bverb|DAC|向电子比例阀接口（\ref{sec:rig-ctrl-intf-reg}节）提供设定点模拟信号；串口\bverb|USART1|与PC交换数据，\bverb|USART2|保留供MCU通过HART主机模块自动配置压强变送器，\bverb|USART3|保留供其他可能加入电控系统的串口外设使用。
 
 \begin{figure}[tbhp]
 \centering
