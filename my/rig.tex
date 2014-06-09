@@ -18,7 +18,7 @@
 
 \begin{enumerate}
   \item \textbf{待测静电卡盘及其配套静电电源} :
-    待测静电卡盘为北方微电子公司提供的一台\SI{300}{mm}双极型静电卡盘，如图~\ref{fig:rig-overall-chuck}，采用埋在氮化铝陶瓷层中的交叉环形金属电极。其陶瓷层表面均布圆形小凸台，边缘处有宽约\SI{2}{\milli\meter}的环形凸起，共同形成背吹通道。配套的直流静电电源可通过标准接头与静电卡盘两电极相连，提供高达\SI{3000}{\volt}的静电电压。
+    待测静电卡盘为北方微电子公司提供的一台\SI{300}{\mm}双极型静电卡盘，如图~\ref{fig:rig-overall-chuck}，采用埋在氮化铝陶瓷层中的交叉环形金属电极。其陶瓷层表面均布圆形小凸台，边缘处有宽约\SI{2}{\mm}的环形凸起，共同形成背吹通道。配套的直流静电电源可通过标准接头与静电卡盘两电极相连，提供高达\SI{3000}{\V}的静电电压。
   \item \textbf{微力探头组件} :
     图~\ref{fig:rig-overall-sch}中位于卡盘上方的部分即为微力探头组件，其主体为\ref{principle-soln-ruby}节所述的微力探头。详细设计在\ref{sec:rig-probe}节讨论。
   \item \textbf{背吹控制系统} :
@@ -56,9 +56,9 @@
 
 微力传感器是探头组件中的核心元件，由上文讨论知，其关键参数与系统性能直接相关，且影响进给机构的选型，因此需首先确定其选型。本节通过对检测过程的分析，先估测关键参数的范围，以此为标准筛选出备选产品，最后对比评估选择合适的微力传感器。
 
-量程是微力传感器最主要的参数，所有相对性能指标均以满量程为基准，如精度、分辨力、敏感度等。合理的量程选择应完全覆盖传感器在整个检测过程中受力的范围，但又不超过该范围过多，以保证测量精度，减小噪声干扰。由于检测过程中需一直保证$N_{\mathrm{probe}} \ll F_{\mathrm{elec}}$，而保守估计静电力$F_{\mathrm{elec}}$在$\SIrange{5}{200}{\newton}$范围内，若设定1\%作为“远小于”的上界（即$N_{\mathrm{probe}} \leq 0.01 \cdot F_{\mathrm{elec}}$），则$N_{\mathrm{probe}} \leq \SI{0.05}{\newton}$，由此确定传感器量程合理取值范围为$\SIrange{0.05}{0.5}{\newton}$。确定量程后，还需确定与其直接相关的安全过载范围。考虑到在安装、调试过程中，以及硅晶圆突然完全脱附时，探头均可能瞬间受到较大的力的作用，若微力传感器具有较大安全过载范围，则可避免意外受损。保守估计传感器需至少能承受\SI{0.5}{\newton}量级的瞬间轴向压缩力而性能不受影响。
+量程是微力传感器最主要的参数，所有相对性能指标均以满量程为基准，如精度、分辨力、敏感度等。合理的量程选择应完全覆盖传感器在整个检测过程中受力的范围，但又不超过该范围过多，以保证测量精度，减小噪声干扰。由于检测过程中需一直保证$N_{\mathrm{probe}} \ll F_{\mathrm{elec}}$，而保守估计静电力$F_{\mathrm{elec}}$在$\SIrange{5}{200}{\N}$范围内，若设定1\%作为“远小于”的上界（即$N_{\mathrm{probe}} \leq 0.01 \cdot F_{\mathrm{elec}}$），则$N_{\mathrm{probe}} \leq \SI{0.05}{\N}$，由此确定传感器量程合理取值范围为$\SIrange{0.05}{0.5}{\N}$。确定量程后，还需确定与其直接相关的安全过载范围。考虑到在安装、调试过程中，以及硅晶圆突然完全脱附时，探头均可能瞬间受到较大的力的作用，若微力传感器具有较大安全过载范围，则可避免意外受损。保守估计传感器需至少能承受\SI{0.5}{\N}量级的瞬间轴向压缩力而性能不受影响。
 
-为了准确检测脱附，需要传感器能分辨较小的受力增量，即具有高分辨力。一般分辨力标称值为满量程的百分比（\% FS），在比较量程不同的传感器时，需先将其转换为绝对数值。当传感器未标称分辨力时，可参考其重复精度数据。由于传感器分辨力越高，成本也越高，根据静电力范围粗估\SI{0.25}{\milli\newton}作为分辨力的参考数值。%TODO:more reasoning
+为了准确检测脱附，需要传感器能分辨较小的受力增量，即具有高分辨力。一般分辨力标称值为满量程的百分比（\% FS），在比较量程不同的传感器时，需先将其转换为绝对数值。当传感器未标称分辨力时，可参考其重复精度数据。由于传感器分辨力越高，成本也越高，根据静电力范围粗估\SI{0.25}{\mN}作为分辨力的参考数值。%TODO:more reasoning
 
 另外，由\ref{principle-soln-ruby}节中关于晶圆挠度的讨论，在其他条件不变的情况下，传感器刚度$k$越高，晶圆挠度范围越小，但同时越难控制探头与晶圆的初始接触力（见上文中保证接触力方法，以及\ref{sec:rig-probe-feeding}节\eqref{eq:rig-probe-feeding-vel}式）。因此，挠度取值及其对检测的影响需作为选型时的重要参考。
 
@@ -77,23 +77,23 @@
 \midrule[1pt]
 原理 &  &  & 应变式 & 压电式 & MEMS \\
 输出信号 & 类型 &  & 电阻电桥 & 电压 & 电压 \\
- & 单位 &  & \si{\milli\volt\per\volt} & V & V \\
+ & 单位 &  & \si{\mV\per\V} & V & V \\
 灵敏度 & 满量程 & 输出 & 0.5 & 5 & 2 \\
- & 单位受力 & 输出/\si{\newton} & 5.0E+00 & 1.1E-01 & 2.0E+02 \\
-分辨力 &  & \si{\micro\newton} & --\footnote{未标称，按重复精度估计} & 600 & 0.5 \\
-刚度 &  & \si{\newton\per\micro\meter} & 0.001 & 1996.45 & --\footnote{未标称，但考虑到其原理，估计其挠度为\SI{1}{\micro\meter}量级} \\
+ & 单位受力 & 输出/\si{\N} & 5.0E+00 & 1.1E-01 & 2.0E+02 \\
+分辨力 &  & \si{\micro\N} & --\footnote{未标称，按重复精度估计} & 600 & 0.5 \\
+刚度 &  & \si{\N\per\um} & 0.001 & 1996.45 & --\footnote{未标称，但考虑到其原理，估计其挠度为\SI{1}{\um}量级} \\
 \midrule[1pt]
-满量程 & 拉(+) & \si{\newton} & 0.1 & 44.48 & 0.01 \\
- & 压(-) & \si{\newton} & 0.1 & 44.48 & 0.01 \\
-最大载荷 & 拉(+) & \si{\newton} & 1 & 889.64 & 0.03 \\
- & 压(-) & \si{\newton} & 1 & 889.64 & 0.03 \\
+满量程 & 拉(+) & \si{\N} & 0.1 & 44.48 & 0.01 \\
+ & 压(-) & \si{\N} & 0.1 & 44.48 & 0.01 \\
+最大载荷 & 拉(+) & \si{\N} & 1 & 889.64 & 0.03 \\
+ & 压(-) & \si{\N} & 1 & 889.64 & 0.03 \\
 \midrule[1pt]
 线性度 &  & \% FS & 0.1 & 1 & \multirow{2}{*}{--}\footnote{未标称，考虑到其分辨力，可按0.1\%估计，下同} \\
- &  & \si{\newton} & 2.00E-04 & 8.90E-01 &  \\
+ &  & \si{\N} & 2.00E-04 & 8.90E-01 &  \\
 滞回 &  & \% FS & 0.1 & \multirow{2}{*}{--} & \multirow{2}{*}{--} \\
- &  & \si{\newton} & 2.00E-04 &  &  \\
+ &  & \si{\N} & 2.00E-04 &  &  \\
 重复精度 &  & \% FS & 0.05 & \multirow{2}{*}{--} & \multirow{2}{*}{--} \\
- &  & \si{\newton} & 1.00E-04 &  &  \\
+ &  & \si{\N} & 1.00E-04 &  &  \\
 \bottomrule[1.5pt]
 \end{tabular}
 \end{minipage}
@@ -120,17 +120,17 @@ F = F_{\mathrm{thres}} + k v \Delta t \leq F_{\max}
 v \leq \frac{ F_{\max} - F_{\mathrm{thres}} }
             { k \Delta t }
 \end{equation}
-LSB200刚度$k = \SI{0.001}{\newton\per\micro\meter}$，取$F_{\max}$为LSB200重复精度的10倍，即\SI{1}{\milli\newton}，粗估$t_{\mathrm{delay}} = \SI{0.01}{\second}$。将以上数据代入\eqref{eq:rig-probe-feeding-vel}式，得：
+LSB200刚度$k = \SI{0.001}{\N\per\um}$，取$F_{\max}$为LSB200重复精度的10倍，即\SI{1}{\mN}，粗估$t_{\mathrm{delay}} = \SI{0.01}{\second}$。将以上数据代入\eqref{eq:rig-probe-feeding-vel}式，得：
 \[
-v \leq \SI{100}{\micro\meter\per\second}
+v \leq \SI{100}{\um\per\second}
 \]
-因此，进给机构需能至少在\SI{100}{\micro\meter\per\second}的速度下平稳运行。
+因此，进给机构需能至少在\SI{100}{\um\per\second}的速度下平稳运行。
 
-微型精密电动进给机构行程较短，为方便检测平台装配与使用，可设计粗精二级调节：先使用一级粗动台（手动或电动均可）将整个微力探头组件定位在距晶圆不超过精密进给机构行程的位置上，再驱动精密进给机构控制探头与晶圆接触。为了减小对粗调环节要求，需要精密进给机构行程至少为\SI{5}{\milli\meter}。
+微型精密电动进给机构行程较短，为方便检测平台装配与使用，可设计粗精二级调节：先使用一级粗动台（手动或电动均可）将整个微力探头组件定位在距晶圆不超过精密进给机构行程的位置上，再驱动精密进给机构控制探头与晶圆接触。为了减小对粗调环节要求，需要精密进给机构行程至少为\SI{5}{\mm}。
 
 由于候选型号较多，完整的选型表参见附录B。
 %TODO:xref appendix (feeding mashup)
-综合考虑性能、价格、订货周期等因素，选择LAC10A-T4精密电动推杆（图~\ref{fig:rig-probe-feeding-LAC10A}），其原理为步进电机驱动滚珠丝杠，有效行程\SI{10}{\milli\meter}，重复定位精度$\pm\SI{1.5}{\micro\meter}$。另外，选择JYPY-02213精密手动滑移台（图\ref{fig:rig-probe-feeding-JYPY}）作为备用方案，其行程\SI{13}{\milli\meter}，测微螺旋最小刻度\SI{10}{\micro\meter}。
+综合考虑性能、价格、订货周期等因素，选择LAC10A-T4精密电动推杆（图~\ref{fig:rig-probe-feeding-LAC10A}），其原理为步进电机驱动滚珠丝杠，有效行程\SI{10}{\mm}，重复定位精度$\pm\SI{1.5}{\um}$。另外，选择JYPY-02213精密手动滑移台（图\ref{fig:rig-probe-feeding-JYPY}）作为备用方案，其行程\SI{13}{\mm}，测微螺旋最小刻度\SI{10}{\um}。
 
 \begin{figure}[tbh]
 \centering
@@ -154,7 +154,7 @@ v \leq \SI{100}{\micro\meter\per\second}
 
 \section{背吹控制系统设计}\label{sec:rig-pressure}
 
-背吹平衡法需要控制静电卡盘背吹入口压强缓慢、平稳上升，并实时测量、记录该压强数值。如能同时测出进入背吹通道的流量，则可为之后的仿真分析提供更多数据参考。整个系统可分为供压与传感两部分，共同的关键参数为压强与流量。按照待测静电卡盘的参数（$d = \SI{296}{\milli\meter}$，$F \leq \SI{200}{\newton}$）估算背吹入口压强最大值为\SI{5}{\kilo\pascal}\footnotemark{}。由于之前尚未有在大气环境下针对同尺寸的静电卡盘的背吹试验或仿真，流量范围未知，只能通过实测获得。本节将分别讨论供压、传感两部分的设计、工作原理与选型。
+背吹平衡法需要控制静电卡盘背吹入口压强缓慢、平稳上升，并实时测量、记录该压强数值。如能同时测出进入背吹通道的流量，则可为之后的仿真分析提供更多数据参考。整个系统可分为供压与传感两部分，共同的关键参数为压强与流量。按照待测静电卡盘的参数（$d = \SI{296}{\mm}$，$F \leq \SI{200}{\N}$）估算背吹入口压强最大值为\SI{5}{\kPa}\footnotemark{}。由于之前尚未有在大气环境下针对同尺寸的静电卡盘的背吹试验或仿真，流量范围未知，只能通过实测获得。本节将分别讨论供压、传感两部分的设计、工作原理与选型。
 %then what is \ref{sec:principle-prob-flow-cfd-result}
 %apparently it's invalid, but why?
 
@@ -163,12 +163,12 @@ v \leq \SI{100}{\micro\meter\per\second}
 
 \subsection{供压方案分析}\label{sec:rig-pressure-supply}
 
-普通气压控制元件（如减压过滤阀等）是为气动机械（如气缸、气爪、气动回转台等）设计的，输出压强下限一般为\SI{0.1}{\mega\pascal}级，超过上文估算的压强范围，因此需使用专用设备实现压强的精确控制。本节依次围绕集成电子压强控制单元、反馈控制微型气泵、以及精密机械式减压阀三个核心组件，提出对应的供压方案。由于影响供压系统性能因素较多，本节仅针对各方案做定性分析，需经实际搭建、测试验证方案可行性与性能。
+普通气压控制元件（如减压过滤阀等）是为气动机械（如气缸、气爪、气动回转台等）设计的，输出压强下限一般为\SI{0.1}{\MPa}级，超过上文估算的压强范围，因此需使用专用设备实现压强的精确控制。本节依次围绕集成电子压强控制单元、反馈控制微型气泵、以及精密机械式减压阀三个核心组件，提出对应的供压方案。由于影响供压系统性能因素较多，本节仅针对各方案做定性分析，需经实际搭建、测试验证方案可行性与性能。
 %TODO:xref pressure impl
 
 \subsubsection{集成电子压强控制单元}\label{sec:rig-pressure-supply-integrated}
 
-这类产品集成了压强控制所需的所有电、气元件，接受一个电信号输入作为压强设定点，控制出口压强等于该设定点。其中，部分产品包括完整的显示、操作单元、通信接口等，如WIKA CPC2000/CPC6000压强控制器等（图~\ref{fig:rig-pressure-supply-cpc6000}）；部分产品只有简单的指示器，设定点为模拟信号（如$\SIrange{4}{20}{\milli\ampere}$信号），如TESCOM ER3000/ER5000系列、SMC ITV00x0系列电子比例阀等。完整的压强控制器较为昂贵，但精度较高，量程可选余地较大；电子比例阀成本较低，但其量程一般仍为气动机械级，而其中较小量程型号允许的流量较低（如SMC ITV0010型，最低输出压强\SI{1}{\kilo\pascal}，最大流量仅\SI{3.5}{\liter\per\minute}）。由于这类产品内部集成度较高，组成复杂，且订货周期较长，只能先通过数据手册标称值推测其性能，选取其中参数与供压系统要求匹配较好的产品订购，等待实际搭建验证。
+这类产品集成了压强控制所需的所有电、气元件，接受一个电信号输入作为压强设定点，控制出口压强等于该设定点。其中，部分产品包括完整的显示、操作单元、通信接口等，如WIKA CPC2000/CPC6000压强控制器等（图~\ref{fig:rig-pressure-supply-cpc6000}）；部分产品只有简单的指示器，设定点为模拟信号（如$\SIrange{4}{20}{\milli\A}$信号），如TESCOM ER3000/ER5000系列、SMC ITV00x0系列电子比例阀等。完整的压强控制器较为昂贵，但精度较高，量程可选余地较大；电子比例阀成本较低，但其量程一般仍为气动机械级，而其中较小量程型号允许的流量较低（如SMC ITV0010型，最低输出压强\SI{1}{\kPa}，最大流量仅\SI{3.5}{\L\per\minute}）。由于这类产品内部集成度较高，组成复杂，且订货周期较长，只能先通过数据手册标称值推测其性能，选取其中参数与供压系统要求匹配较好的产品订购，等待实际搭建验证。
 %TODO:xref impl (ITV0010 epic fail, mention PQ already ordered)
 
 \begin{figure}[tbh]
@@ -203,7 +203,7 @@ v \leq \SI{100}{\micro\meter\per\second}
 
 \subsubsection{精密机械式减压阀}\label{sec:rig-pressure-supply-reg}
 
-机械式减压阀的基本原理是：入口与出口间有一开度可调的小孔，其开度由出口压强通过膜片负反馈控制，从而维持出口压强恒定。根据其具体结构不同，部分机械式减压阀在小孔开度接近0时，出口压强可低于其标称最低输出压强，但不能起到稳压作用（即出口压强与流量相关）。如SMC IR1000型精密减压阀（图~\ref{fig:rig-pressure-supply-ir1000}），标称调压范围$\SIrange{5}{200}{\kilo\pascal}$，标称灵敏度\SI{0.4}{\kilo\pascal}。该产品调压范围可满足\ref{sec:rig-pressure-supply-integrated}节中提到的电子比例阀的入口压强范围要求，因此可作为其前置减压阀使用。同时，虽然其标称最低输出压强大于供压系统最大输出压强，但考虑其工作原理（具有静态放气通路）允许其出口压强低于标称最低输出压强，可以尝试将其出口直接连接背吹入口，用于提供$\SIrange{0}{5}{\kilo\pascal}$范围内的缓慢变化的压强。
+机械式减压阀的基本原理是：入口与出口间有一开度可调的小孔，其开度由出口压强通过膜片负反馈控制，从而维持出口压强恒定。根据其具体结构不同，部分机械式减压阀在小孔开度接近0时，出口压强可低于其标称最低输出压强，但不能起到稳压作用（即出口压强与流量相关）。如SMC IR1000型精密减压阀（图~\ref{fig:rig-pressure-supply-ir1000}），标称调压范围$\SIrange{5}{200}{\kPa}$，标称灵敏度\SI{0.4}{\kPa}。该产品调压范围可满足\ref{sec:rig-pressure-supply-integrated}节中提到的电子比例阀的入口压强范围要求，因此可作为其前置减压阀使用。同时，虽然其标称最低输出压强大于供压系统最大输出压强，但考虑其工作原理（具有静态放气通路）允许其出口压强低于标称最低输出压强，可以尝试将其出口直接连接背吹入口，用于提供$\SIrange{0}{5}{\kPa}$范围内的缓慢变化的压强。
 %TODO:xref impl (manual IR1000 works)
 
 \begin{figure}[tbhp]
@@ -218,7 +218,7 @@ v \leq \SI{100}{\micro\meter\per\second}
 
 无论供压部分采用何种方案，均不影响压强传感器的选型。完整的选型表见附录B。
 %TODO:xref appendix (pressure mashup)
-最终选定Honeywell STD720精密差压变送器（量程可在$\pm \num{1} \sim \pm \SI{100}{\kilo\pascal}$范围内任意配置，基础准确度$0.05\%$，输出$\SIrange{4}{20}{\milli\ampere}$模拟信号、HART现场总线协议）。另外配置\SI{16}{\kilo\pascal}量程的机械指针式压强计，辅助调试。
+最终选定Honeywell STD720精密差压变送器（量程可在$\pm \num{1} \sim \pm \SI{100}{\kPa}$范围内任意配置，基础准确度$0.05\%$，输出$\SIrange{4}{20}{\milli\A}$模拟信号、HART现场总线协议）。另外配置\SI{16}{\kPa}量程的机械指针式压强计，辅助调试。
 
 
 \subsection{过压保护措施}\label{sec:rig-pressure-valve}
@@ -233,7 +233,7 @@ v \leq \SI{100}{\micro\meter\per\second}
 
 \section{机械结构设计}\label{sec:rig-model}
 
-根据图~\ref{fig:rig-overall-sch}，设计测试平台的机械结构。为了方便加工、搭建，选用标准$\num{30} \times \SI{30}{\milli\meter}$系列开槽铝合金型材及配套标准连接件，与依据待测静电卡盘的外形尺寸设计的连接板共同构成框架结构；其他组件均通过连接件与之相连。框架结构的简化三维模型如图~\ref{fig:rig-model-all-iso}\footnote{型材连接部分零件数较多，因此并未全部在总装配体三维模型中表示出。}。
+根据图~\ref{fig:rig-overall-sch}，设计测试平台的机械结构。为了方便加工、搭建，选用标准$\num{30} \times \SI{30}{\mm}$系列开槽铝合金型材及配套标准连接件，与依据待测静电卡盘的外形尺寸设计的连接板共同构成框架结构；其他组件均通过连接件与之相连。框架结构的简化三维模型如图~\ref{fig:rig-model-all-iso}\footnote{型材连接部分零件数较多，因此并未全部在总装配体三维模型中表示出。}。
 
 \begin{figure}[p]
 \centering
@@ -276,12 +276,12 @@ v \leq \SI{100}{\micro\meter\per\second}
 
 \subsection{型材框架主体}\label{sec:rig-model-frame}
 
-框架主体设计为三层对称结构：中间一层是静电卡盘连接板，上下两层均为4根型材用铸钢角件和紧定螺钉连接成的正方形结构；层与层之间用4根纵向型材负责承重，在连接板侧使用$\num{50}\times\num{50}\times\SI{30}{\milli\meter}$挤压角件连接（三维模型中已表示出），在正方形框架侧使用$\num{60}\times\num{60}\times\SI{30}{\milli\meter}$角件连接。这种连接方式的主要优点是不依靠型材与角件的摩擦力承受重量，而是靠型材、角件、连接螺栓将载荷传至地面，稳定可靠。
+框架主体设计为三层对称结构：中间一层是静电卡盘连接板，上下两层均为4根型材用铸钢角件和紧定螺钉连接成的正方形结构；层与层之间用4根纵向型材负责承重，在连接板侧使用$\num{50}\times\num{50}\times\SI{30}{\mm}$挤压角件连接（三维模型中已表示出），在正方形框架侧使用$\num{60}\times\num{60}\times\SI{30}{\mm}$角件连接。这种连接方式的主要优点是不依靠型材与角件的摩擦力承受重量，而是靠型材、角件、连接螺栓将载荷传至地面，稳定可靠。
 
 
 \subsection{微力探头部分}\label{sec:rig-model-probe}
 
-由于红宝石探头的连接螺纹为M2外螺纹，LSB200的连接螺纹为M3内螺纹，设计螺纹转接头如图~\ref{fig:rig-model-probe-connLSBRuby}。由\ref{sec:rig-probe-feeding}节中讨论，需设计微力探头组件位置粗调结构。考虑到LAC-10A电动推杆的行程为\SI{10}{\milli\meter}，采用最简单易行的设计（三维模型中已表示出）：在框架结构上部加装可自由调节位置的型材组，由横、竖两根型材构成；横梁用螺栓、大垫圈、T槽螺母连接在框架上层四边形的下面；竖梁使用$\num{60}\times\num{60}\times\SI{30}{\milli\meter}$角件与横梁连接。在此基础上，设计微力探头组件连接板如图~\ref{fig:rig-model-probe-connBridgeProbesMain}；连接板与LAC-10A通过图~\ref{fig:rig-model-probe-connBridgeProbesTab}~所示连接 块、沉头螺钉相连，与JYPY-02213通过沉头螺钉相连。连接板本身可通过螺栓与T槽螺母可紧固在竖梁任意位置。这样即可手动大范围调节微力探头在空间中的位置。
+由于红宝石探头的连接螺纹为M2外螺纹，LSB200的连接螺纹为M3内螺纹，设计螺纹转接头如图~\ref{fig:rig-model-probe-connLSBRuby}。由\ref{sec:rig-probe-feeding}节中讨论，需设计微力探头组件位置粗调结构。考虑到LAC-10A电动推杆的行程为\SI{10}{\mm}，采用最简单易行的设计（三维模型中已表示出）：在框架结构上部加装可自由调节位置的型材组，由横、竖两根型材构成；横梁用螺栓、大垫圈、T槽螺母连接在框架上层四边形的下面；竖梁使用$\num{60}\times\num{60}\times\SI{30}{\mm}$角件与横梁连接。在此基础上，设计微力探头组件连接板如图~\ref{fig:rig-model-probe-connBridgeProbesMain}；连接板与LAC-10A通过图~\ref{fig:rig-model-probe-connBridgeProbesTab}~所示连接 块、沉头螺钉相连，与JYPY-02213通过沉头螺钉相连。连接板本身可通过螺栓与T槽螺母可紧固在竖梁任意位置。这样即可手动大范围调节微力探头在空间中的位置。
 这一部分整体三维模型如图~\ref{fig:rig-model-probe}；其中两组微力探头是为了同时在图中表示探头与LAC-10A和JYPY-02213的连接方式，实际仅选装一组。
 
 %TODO:conn JYPY LSB
@@ -344,29 +344,29 @@ v \leq \SI{100}{\micro\meter\per\second}
 
 \subsection{压强变送器接口}\label{sec:rig-ctrl-intf-loop}
 
-\ref{sec:rig-pressure-sensor}节选择的Honeywell STD720精密差压变送器属于Honeywell SmartLine智能数字仪表系列，内置数字信号处理器，为单电源+24V供电的2线制\SIrange{4}{20}{\milli\ampere}电流环变送器设备，并支持HART现场总线协议。虽然可以通过HART协议直接从仪表读取压强数值，由于HART传输速率非常低，一个完整的请求 -- 应答过程可耗时\SI{0.25}{\second}以上，与变送器本身的\SI{50}{\hertz}采样率严重不匹配，因此HART协议仅供仪表配置与标定使用，通过独立的HART Modem与PC连接，并使用Honeywell官方提供的软件对其进行配置，而压强的实时数值从\SIrange{4}{20}{\milli\ampere}电流环获取。
+\ref{sec:rig-pressure-sensor}节选择的Honeywell STD720精密差压变送器属于Honeywell SmartLine智能数字仪表系列，内置数字信号处理器，为单电源+24V供电的2线制\SIrange{4}{20}{\milli\A}电流环变送器设备，并支持HART现场总线协议。虽然可以通过HART协议直接从仪表读取压强数值，由于HART传输速率非常低，一个完整的请求 -- 应答过程可耗时\SI{0.25}{\second}以上，与变送器本身的\SI{50}{\Hz}采样率严重不匹配，因此HART协议仅供仪表配置与标定使用，通过独立的HART Modem与PC连接，并使用Honeywell官方提供的软件对其进行配置，而压强的实时数值从\SIrange{4}{20}{\milli\A}电流环获取。
 
-接口电路总体构成如图~\ref{fig:rig-ctrl-intf-loop-sch-root}：将电流信号转换为电压信号后，接入ADC转换为数字量，由MCU通过SPI串行总线读取。模拟前端（信号转换与处理）部分如图~\ref{fig:rig-ctrl-intf-loop-sch-sample}：稳压滤波过的+24V电压接入变送器正极接线柱(+)为其供电，变送器负极接线柱(-)输出的\SIrange{4}{20}{\milli\ampere}电流信号经过\SI{240}{\ohm}采样电阻R2得到\SIrange{0.96}{4.8}{\milli\volt}电压信号，经R3、C1一阶滤波，接入ADC模拟输入端。这里R1起双重作用：与C6组成电源滤波器（并非唯一，见\ref{sec:impl-pcb-pressure}中供电部分），使电流环中串联电阻（R1、R2）不低于\SI{250}{\ohm}以满足HART协议物理层要求。ADC选用AD768x系列\footnotemark{}，可直接使用对应数据手册中参考电路，具体实现不再赘述。
+接口电路总体构成如图~\ref{fig:rig-ctrl-intf-loop-sch-root}：将电流信号转换为电压信号后，接入ADC转换为数字量，由MCU通过SPI串行总线读取。模拟前端（信号转换与处理）部分如图~\ref{fig:rig-ctrl-intf-loop-sch-sample}：稳压滤波过的+24V电压接入变送器正极接线柱(+)为其供电，变送器负极接线柱(-)输出的\SIrange{4}{20}{\milli\A}电流信号经过\SI{240}{\ohm}采样电阻R2得到\SIrange{0.96}{4.8}{\mV}电压信号，经R3、C1一阶滤波，接入ADC模拟输入端。这里R1起双重作用：与C6组成电源滤波器（并非唯一，见\ref{sec:impl-pcb-pressure}中供电部分），使电流环中串联电阻（R1、R2）不低于\SI{250}{\ohm}以满足HART协议物理层要求。ADC选用AD768x系列\footnotemark{}，可直接使用对应数据手册中参考电路，具体实现不再赘述。
 
 \footnotetext{ADI公司AD768x系列、TI公司ADS888x系列为针脚、封装均兼容，功能相同，但性能参数各异的SPI接口SAR（连续逼近）型ADC，由于从ADI公司获取了AD7686样片，下文中该ADC统一称为``AD7686''。}
 
 \begin{figure}[tb]
 \centering
 \includegraphics[width=0.8\linewidth]{rig/ctrl__intf__loop__sch__root}
-\caption{\SIrange{4}{20}{\milli\ampere}电流环接口电路原理图（总体）}
+\caption{\SIrange{4}{20}{\milli\A}电流环接口电路原理图（总体）}
 \label{fig:rig-ctrl-intf-loop-sch-root}
 \end{figure}
 
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1\linewidth]{rig/ctrl__intf__loop__sch__sample}
-\caption{\SIrange{4}{20}{\milli\ampere}电流环接口电路原理图（前端）}
+\caption{\SIrange{4}{20}{\milli\A}电流环接口电路原理图（前端）}
 \label{fig:rig-ctrl-intf-loop-sch-sample}
 \end{figure}
 
 \subsection{电子比例阀接口}\label{sec:rig-ctrl-intf-reg}
 
-\ref{sec:rig-pressure-supply-integrated}节中提到的压力控制器或电子比例阀接受的设定点输入分为两种：模拟电压信号、\SIrange{4}{20}{\milli\ampere}模拟电流环信号。模拟电压输入可直接通过单片机内置DAC（输出范围\SIrange{0}{3.3}{\volt}）经一级放大滤波得到，其原理图与图\ref{fig:rig-ctrl-intf-loop-sch-sample}~中采样电阻之后的部分基本相同，不再赘述。模拟电流输入可用AD420集成电流输出DAC提供，接法如图~\ref{fig:rig-ctrl-intf-ad420}。
+\ref{sec:rig-pressure-supply-integrated}节中提到的压力控制器或电子比例阀接受的设定点输入分为两种：模拟电压信号、\SIrange{4}{20}{\milli\A}模拟电流环信号。模拟电压输入可直接通过单片机内置DAC（输出范围\SIrange{0}{3.3}{\V}）经一级放大滤波得到，其原理图与图\ref{fig:rig-ctrl-intf-loop-sch-sample}~中采样电阻之后的部分基本相同，不再赘述。模拟电流输入可用AD420集成电流输出DAC提供，接法如图~\ref{fig:rig-ctrl-intf-ad420}。
 
 \begin{figure}[tbhp]
 \centering
@@ -377,7 +377,7 @@ v \leq \SI{100}{\micro\meter\per\second}
 
 \subsection{电磁方向阀接口}\label{sec:rig-ctrl-intf-relay}
 
-\ref{sec:rig-pressure-valve}节中的电磁方向阀（两位三通）在电路中等效为一直流\SI{24}{\volt}继电器，可使用常见的ULN2003集成功率开关驱动，如图~\ref{fig:rig-ctrl-intf-uln2003}。由于ULN2003内置续流二极管，输出端无需任何被动元件；R14为输入端下拉电阻，防止输入悬空时受电磁干扰产生误动作。
+\ref{sec:rig-pressure-valve}节中的电磁方向阀（两位三通）在电路中等效为一直流\SI{24}{\V}继电器，可使用常见的ULN2003集成功率开关驱动，如图~\ref{fig:rig-ctrl-intf-uln2003}。由于ULN2003内置续流二极管，输出端无需任何被动元件；R14为输入端下拉电阻，防止输入悬空时受电磁干扰产生误动作。
 
 \begin{figure}[tbhp]
 \centering
@@ -388,11 +388,11 @@ v \leq \SI{100}{\micro\meter\per\second}
 
 \subsection{电动推杆接口}\label{sec:rig-ctrl-intf-stepper}
 
-\ref{sec:rig-probe-feeding}节中选择的LAC-10A电动推杆使用两相四线混合式步进电机作为驱动力，并使用永磁铁 -- 霍尔开关作为零位传感器。该步进电机的相电阻较高，为\SI{20.4}{\ohm}，而额定电流较低，为\SI{0.24}{\ampere}，需要使用与之相匹配的步进电机驱动器。最终选择雷赛DM422C数字式步进电机驱动器，其输出峰值电流可事先以\SI{0.1}{\ampere}为单位通过串口配置，通过2片MAX490E差分输入输出接口芯片（图~\ref{fig:rig-ctrl-intf-max490e}）分别接收MCU发出的脉冲、方向指令信号。
+\ref{sec:rig-probe-feeding}节中选择的LAC-10A电动推杆使用两相四线混合式步进电机作为驱动力，并使用永磁铁 -- 霍尔开关作为零位传感器。该步进电机的相电阻较高，为\SI{20.4}{\ohm}，而额定电流较低，为\SI{0.24}{\A}，需要使用与之相匹配的步进电机驱动器。最终选择雷赛DM422C数字式步进电机驱动器，其输出峰值电流可事先以\SI{0.1}{\A}为单位通过串口配置，通过2片MAX490E差分输入输出接口芯片（图~\ref{fig:rig-ctrl-intf-max490e}）分别接收MCU发出的脉冲、方向指令信号。
 
-LAC-10A附带的零位传感器使用标准的3线开漏(open drain)输出霍尔开关A1122：平时输出悬空；当在电动推杆即将到达其最短位置时，磁铁靠近霍尔开关，使其动作，输出被下拉至地；由于霍尔开关具有滞回(hysterisis)，此时只有电动推杆向伸长方向移动一小段确定的距离后，输出才会恢复悬空状态。由于电机附近存在较强电磁干扰，为避免因此产生误动作，可增加霍尔开关供电电压至\SIrange{12}{24}{\volt}\footnotemark{}，通过光耦隔离，转换为\SI{3.3}{\volt}信号，如图~\ref{fig:rig-ctrl-intf-opto}：U2为普通光耦，R1为光耦输入端串联限流电阻，输出端R2为上拉电阻。零位传感器等效为开关J1，平时J1断开，\bverb|out|为高电平（\SI{3.3}{\volt}）；动作时J1闭合，U2接通，\bverb|out|为低电平（0）；该信号即可直接接入MCU。
+LAC-10A附带的零位传感器使用标准的3线开漏(open drain)输出霍尔开关A1122：平时输出悬空；当在电动推杆即将到达其最短位置时，磁铁靠近霍尔开关，使其动作，输出被下拉至地；由于霍尔开关具有滞回(hysterisis)，此时只有电动推杆向伸长方向移动一小段确定的距离后，输出才会恢复悬空状态。由于电机附近存在较强电磁干扰，为避免因此产生误动作，可增加霍尔开关供电电压至\SIrange{12}{24}{\V}\footnotemark{}，通过光耦隔离，转换为\SI{3.3}{\V}信号，如图~\ref{fig:rig-ctrl-intf-opto}：U2为普通光耦，R1为光耦输入端串联限流电阻，输出端R2为上拉电阻。零位传感器等效为开关J1，平时J1断开，\bverb|out|为高电平（\SI{3.3}{\V}）；动作时J1闭合，U2接通，\bverb|out|为低电平（0）；该信号即可直接接入MCU。
 
-\footnotetext{A1122数据手册中标称\SI{24}{\volt}为最大供给电压，因此实际供给电压应 严格小于\SI{24}{\volt}。}
+\footnotetext{A1122数据手册中标称\SI{24}{\V}为最大供给电压，因此实际供给电压应 严格小于\SI{24}{\V}。}
 
 \begin{figure}[p]
 \centering
@@ -421,7 +421,7 @@ V_{\mathrm{S}} = V_{\mathrm{E}} \cdot (\frac{R_2}{R_1 + R_2} - \frac{R_4}{R_3 + 
 \end{equation}
 其中$F$为传感器受力，$k$为只与应变片本身特性相关的比例系数，$F_0$为传感器的零位偏差。
 
-LSB200主要参数：阻值\SI{1000}{\ohm}，标称满量程输出\SI{0.5}{\milli\volt\per\volt}，最大激励电压\SI{10}{\volt}。由于电桥的等效输出电阻低，输出电压最大为\SI{5}{\milli\volt}，需将该信号放大后处理。考虑到压强变送器内部采样率仅为\SI{50}{\hertz}（见\ref{sec:rig-ctrl-intf-loop}节），微力传感器无需高采样率；为简化电路，减小可能干扰脱附判断的噪声，选择专门为低速（$\leq\SI{1}{\kilo\hertz}$）电桥设计的集成了可变增益仪表放大器与24位$\Sigma$--$\Delta$型ADC的AD7730芯片，如图~\ref{fig:rig-ctrl-ad7730-ac}。由于ADC的转换结果由其输入电压与参考电压的比值决定，一般必须使用精确电压基准芯片为ADC提供参考电压，才能得到准确的转换结果；但在本电路中，ADC参考电压与激励电压相同，均为$V_{\mathrm{E}}$，由\eqref{eq:rig-ctrl-intf-strain}式知，参考电压的变化不影响输入电压与参考电压的比值，即转换结果与参考电压具体取值无关，所以无需使用精确电压基准芯片。AD7730的参考电压名义值为\SI{5}{\volt}，输入电压范围名义值（即放大器增益）可通过SPI接口设定为\SIlist[list-separator={、},list-final-separator={、或}]{\pm 10;\pm 20;\pm 40;\pm 80}{\milli\volt}；当$V_{\mathrm{E}} = \SI{5}{\volt}$时，$V_{\mathrm{S}}$范围为\SI{\pm 2.5}{\milli\volt}，因此设定AD7730的电压范围为\SI{\pm 10}{\milli\volt}。
+LSB200主要参数：阻值\SI{1000}{\ohm}，标称满量程输出\SI{0.5}{\mV\per\V}，最大激励电压\SI{10}{\V}。由于电桥的等效输出电阻低，输出电压最大为\SI{5}{\mV}，需将该信号放大后处理。考虑到压强变送器内部采样率仅为\SI{50}{\Hz}（见\ref{sec:rig-ctrl-intf-loop}节），微力传感器无需高采样率；为简化电路，减小可能干扰脱附判断的噪声，选择专门为低速（$\leq\SI{1}{\kHz}$）电桥设计的集成了可变增益仪表放大器与24位$\Sigma$--$\Delta$型ADC的AD7730芯片，如图~\ref{fig:rig-ctrl-ad7730-ac}。由于ADC的转换结果由其输入电压与参考电压的比值决定，一般必须使用精确电压基准芯片为ADC提供参考电压，才能得到准确的转换结果；但在本电路中，ADC参考电压与激励电压相同，均为$V_{\mathrm{E}}$，由\eqref{eq:rig-ctrl-intf-strain}式知，参考电压的变化不影响输入电压与参考电压的比值，即转换结果与参考电压具体取值无关，所以无需使用精确电压基准芯片。AD7730的参考电压名义值为\SI{5}{\V}，输入电压范围名义值（即放大器增益）可通过SPI接口设定为\SIlist[list-separator={、},list-final-separator={、或}]{\pm 10;\pm 20;\pm 40;\pm 80}{\mV}；当$V_{\mathrm{E}} = \SI{5}{\V}$时，$V_{\mathrm{S}}$范围为\SI{\pm 2.5}{\mV}，因此设定AD7730的电压范围为\SI{\pm 10}{\mV}。
 
 \begin{figure}[p]
 \centering
@@ -456,7 +456,7 @@ MCU的软件部分使用Keil RTX实时操作系统，系统定时器设为\SI{1}
 
 \subsubsection{数据采集部分}\label{sec:rig-ctrl-mcu-adc}
 
-在设计数据采集时序前，需先确定两ADC的采样率。AD768x系列允许的最大采样率至少为\SI{100}{\kilo\hertz}，而压强变送器本身的输出更新速率为\SI{50}{\hertz}，因此可以适当过采样以提高ADC有效精度。AD7730的采样率可通过SPI接口配置，最高可达\SI{1}{\kilo\hertz}，且由于AD7730为$\Sigma$--$\Delta$型ADC，其采样率越低，有效精度越高。为简化实现，将两ADC的采样率均定为\SI{100}{\hertz}，这样即可实现同步采样：AD7686的采样由其\bverb|CNV|引脚上升沿控制，即采样率由外部决定，而AD7730的采样率由其内部时钟与配置寄存器决定；因此可使用AD7730的中断请求引脚\bverb|nRDY|作为同步信号，触发转换与读取时序如图~\ref{fig:rig-ctrl-mcu-adc-timing}：中断响应后，立刻开始AD7686转换，并同时开始读取AD7730数据；当AD7730数据读取完毕时，AD7686转换已完成，可继续读取AD7686数据。
+在设计数据采集时序前，需先确定两ADC的采样率。AD768x系列允许的最大采样率至少为\SI{100}{\kHz}，而压强变送器本身的输出更新速率为\SI{50}{\Hz}，因此可以适当过采样以提高ADC有效精度。AD7730的采样率可通过SPI接口配置，最高可达\SI{1}{\kHz}，且由于AD7730为$\Sigma$--$\Delta$型ADC，其采样率越低，有效精度越高。为简化实现，将两ADC的采样率均定为\SI{100}{\Hz}，这样即可实现同步采样：AD7686的采样由其\bverb|CNV|引脚上升沿控制，即采样率由外部决定，而AD7730的采样率由其内部时钟与配置寄存器决定；因此可使用AD7730的中断请求引脚\bverb|nRDY|作为同步信号，触发转换与读取时序如图~\ref{fig:rig-ctrl-mcu-adc-timing}：中断响应后，立刻开始AD7686转换，并同时开始读取AD7730数据；当AD7730数据读取完毕时，AD7686转换已完成，可继续读取AD7686数据。
 
 \begin{figure}[tbh]
 \centering
@@ -522,7 +522,7 @@ MCU的软件部分使用Keil RTX实时操作系统，系统定时器设为\SI{1}
 \end{tikztimingtable}
 }
 
-\footnotetext[1]{受各种噪声影响，实际有效位数略低于16位，因此将AD7730配置为16位输出。}
+\footnotetext[1]{受各种噪声影响，预计实际有效位数略低于16位，因此将AD7730配置为16位输出。}
 
 \end{minipage}
 \caption{ADC通信时序}

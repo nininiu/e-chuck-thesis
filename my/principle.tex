@@ -94,7 +94,7 @@ F_{\mathrm{elec}} = (p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} - p_0 \c
 
 \footnotetext{此处流道宽度由陶瓷介电层表面的凸台高度决定，但为了简化分析起见，暂时忽略凸台影响。}
 
-由于目前对接触密封的了解尚少，无法准确估计等效狭缝宽度，因此设定参数扫描，求解当狭缝宽度为$\SIrange{1}{0.1}{\micro\meter}$（\bverb|10^{range(0,-1/2,-1)}[um]|）时的流动情况。
+由于目前对接触密封的了解尚少，无法准确估计等效狭缝宽度，因此设定参数扫描，求解当狭缝宽度为\SIrange{1}{0.1}{\um}（\bverb|10^{range(0,-1/2,-1)}[um]|）时的流动情况。
 
 \subsubsection{CFD仿真结果}\label{sec:principle-prob-flow-cfd-result}
 
@@ -102,10 +102,10 @@ F_{\mathrm{elec}} = (p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} - p_0 \c
 
 %TODO:动量呢？
 
-在入口处对$v_z\ \rho$取面积分，得到质量流量如表\ref{tab:principle-flow-cfd-result-flow}。单位\si{\mg\per\minute}大致与sccm相当，即质量流量在狭缝宽\SI{1}{\micro\meter}时，仍低于1 sccm；狭缝变窄时，流量得非常快。这说明只要密封处的实际表面粗糙度足够低，接触足够紧密，则气体泄漏几乎可忽略不计；若安装流量计，则应选取较小量程的型号（一般为10 sccm）。
+在入口处对$v_z\ \rho$取面积分，得到质量流量如表\ref{tab:principle-flow-cfd-result-flow}。单位\si{\mg\per\minute}大致与sccm相当，即质量流量在狭缝宽\SI{1}{\um}时，仍低于1 sccm；狭缝变窄时，流量得非常快。这说明只要密封处的实际表面粗糙度足够低，接触足够紧密，则气体泄漏几乎可忽略不计；若安装流量计，则应选取较小量程的型号（一般为10 sccm）。
 
 沿模型上边界（即晶圆下表面）绘制压强 -- 半径曲线，如图~\ref{fig:principle-flow-cfd-result-pressure} ，发现在流道中段压降满足$\Delta p \propto \log{r}$。 %TODO:derive by hand
-当狭缝宽\SI{1}{\micro\meter}时，在中段存在明显压降（约\SI{0.6}{\kPa}），显然\textbf{不能忽略}；但当狭缝更窄时，压降迅速衰减，当狭缝宽\SI{0.3}{\micro\meter}时已可忽略。当然，这是假定只有卡盘中央有一个气孔的时候的情形，而实际的静电卡盘为了控制温度分布均匀，在整个表面多处分布气孔，可使压强分布更均匀。即便如此，在处理实验数据时，应小心验证压强分布（可进一步构建三维流道模型以得到更准确的仿真数据），不能直接认为晶圆受均匀气压作用。
+当狭缝宽\SI{1}{\um}时，在中段存在明显压降（约\SI{0.6}{\kPa}），显然\textbf{不能忽略}；但当狭缝更窄时，压降迅速衰减，当狭缝宽\SI{0.3}{\um}时已可忽略。当然，这是假定只有卡盘中央有一个气孔的时候的情形，而实际的静电卡盘为了控制温度分布均匀，在整个表面多处分布气孔，可使压强分布更均匀。即便如此，在处理实验数据时，应小心验证压强分布（可进一步构建三维流道模型以得到更准确的仿真数据），不能直接认为晶圆受均匀气压作用。
 
 \begin{table*}[thbp]
 \centering
@@ -144,7 +144,7 @@ F_{\mathrm{elec}} = (p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} - p_0 \c
 
 \eqref{eq:principle-backside-force}式中，晶圆背面气压等效作用面积（即$A_{\mathrm{back}}$）是未知量。
 %TODO:cite nagoya
-由于陶瓷介电层上的凸台高度较低（约\SI{10}{\micro\meter}）与晶圆背面接触情况不明，尚不能直接断言$A_{\mathrm{back}}$等于晶圆背面所有未与陶瓷层凸台/边缘接触部分的面积。由于此处无法用普通CFD求解，需要设计额外的标定步骤，测出$A_{\mathrm{back}}$数值。
+由于陶瓷介电层上的凸台高度较低（约\SI{10}{\um}）与晶圆背面接触情况不明，尚不能直接断言$A_{\mathrm{back}}$等于晶圆背面所有未与陶瓷层凸台/边缘接触部分的面积。由于此处无法用普通CFD求解，需要设计额外的标定步骤，测出$A_{\mathrm{back}}$数值。
 
 
 
