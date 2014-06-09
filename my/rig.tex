@@ -168,7 +168,7 @@ v \leq \SI{100}{\um\per\second}
 
 \subsubsection{集成电子压强控制单元}\label{sec:rig-pressure-supply-integrated}
 
-这类产品集成了压强控制所需的所有电、气元件，接受一个电信号输入作为压强设定点，控制出口压强等于该设定点。其中，部分产品包括完整的显示、操作单元、通信接口等，如WIKA CPC2000/CPC6000压强控制器等（图~\ref{fig:rig-pressure-supply-cpc6000}）；部分产品只有简单的指示器，设定点为模拟信号（如$\SIrange{4}{20}{\milli\A}$信号），如TESCOM ER3000/ER5000系列、SMC ITV00x0系列电子比例阀等。完整的压强控制器较为昂贵，但精度较高，量程可选余地较大；电子比例阀成本较低，但其量程一般仍为气动机械级，而其中较小量程型号允许的流量较低（如SMC ITV0010型，最低输出压强\SI{1}{\kPa}，最大流量仅\SI{3.5}{\L\per\minute}）。由于这类产品内部集成度较高，组成复杂，且订货周期较长，只能先通过数据手册标称值推测其性能，选取其中参数与供压系统要求匹配较好的产品订购，等待实际搭建验证。
+这类产品集成了压强控制所需的所有电、气元件，接受一个电信号输入作为压强设定点，控制出口压强等于该设定点。其中，部分产品包括完整的显示、操作单元、通信接口等，如WIKA CPC2000/CPC6000压强控制器等（图~\ref{fig:rig-pressure-supply-cpc6000}）；部分产品只有简单的指示器，设定点为模拟信号（如$\SIrange{4}{20}{\mA}$信号），如TESCOM ER3000/ER5000系列、SMC ITV00x0系列电子比例阀等。完整的压强控制器较为昂贵，但精度较高，量程可选余地较大；电子比例阀成本较低，但其量程一般仍为气动机械级，而其中较小量程型号允许的流量较低（如SMC ITV0010型，最低输出压强\SI{1}{\kPa}，最大流量仅\SI{3.5}{\L\per\minute}）。由于这类产品内部集成度较高，组成复杂，且订货周期较长，只能先通过数据手册标称值推测其性能，选取其中参数与供压系统要求匹配较好的产品订购，等待实际搭建验证。
 %TODO:xref impl (ITV0010 epic fail, mention PQ already ordered)
 
 \begin{figure}[tbh]
@@ -186,6 +186,8 @@ v \leq \SI{100}{\um\per\second}
   \item 在泵与背吹通道入口间增设双端气瓶，通过增加惯性环节的方式降低压强波动；
   \item 在背吹通道入口处加设一节流阀通向大气，避免电机反复启停造成的压强波动；
 \end{enumerate}
+
+由于本方案相当于从基础组件开始开发一个完整的闭环控制机电产品，其设计与实现工作量极大，超过本文范畴，不再讨论，仅作为备用方案供参考。
 
 \begin{figure}[tbh]
 \centering
@@ -218,7 +220,7 @@ v \leq \SI{100}{\um\per\second}
 
 无论供压部分采用何种方案，均不影响压强传感器的选型。完整的选型表见附录B。
 %TODO:xref appendix (pressure mashup)
-最终选定Honeywell STD720精密差压变送器（量程可在$\pm \num{1} \sim \pm \SI{100}{\kPa}$范围内任意配置，基础准确度$0.05\%$，输出$\SIrange{4}{20}{\milli\A}$模拟信号、HART现场总线协议）。另外配置\SI{16}{\kPa}量程的机械指针式压强计，辅助调试。
+最终选定Honeywell STD720精密差压变送器（量程可在$\pm \num{1} \sim \pm \SI{100}{\kPa}$范围内任意配置，基础准确度$0.05\%$，输出$\SIrange{4}{20}{\mA}$模拟信号、HART现场总线协议）。另外配置\SI{16}{\kPa}量程的机械指针式压强计，辅助调试。
 
 
 \subsection{过压保护措施}\label{sec:rig-pressure-valve}
@@ -344,29 +346,29 @@ v \leq \SI{100}{\um\per\second}
 
 \subsection{压强变送器接口}\label{sec:rig-ctrl-intf-loop}
 
-\ref{sec:rig-pressure-sensor}节选择的Honeywell STD720精密差压变送器属于Honeywell SmartLine智能数字仪表系列，内置数字信号处理器，为单电源+24V供电的2线制\SIrange{4}{20}{\milli\A}电流环变送器设备，并支持HART现场总线协议。虽然可以通过HART协议直接从仪表读取压强数值，由于HART传输速率非常低，一个完整的请求 -- 应答过程可耗时\SI{0.25}{\second}以上，与变送器本身的\SI{50}{\Hz}采样率严重不匹配，因此HART协议仅供仪表配置与标定使用，通过独立的HART Modem与PC连接，并使用Honeywell官方提供的软件对其进行配置，而压强的实时数值从\SIrange{4}{20}{\milli\A}电流环获取。
+\ref{sec:rig-pressure-sensor}节选择的Honeywell STD720精密差压变送器属于Honeywell SmartLine智能数字仪表系列，内置数字信号处理器，为单电源+24V供电的2线制\SIrange{4}{20}{\mA}电流环变送器设备，并支持HART现场总线协议。虽然可以通过HART协议直接从仪表读取压强数值，由于HART传输速率非常低，一个完整的请求 -- 应答过程可耗时\SI{0.25}{\s}以上，与变送器本身的\SI{50}{\Hz}采样率严重不匹配，因此HART协议仅供仪表配置与标定使用，通过独立的HART Modem与PC连接，并使用Honeywell官方提供的软件对其进行配置，而压强的实时数值从\SIrange{4}{20}{\mA}电流环获取。
 
-接口电路总体构成如图~\ref{fig:rig-ctrl-intf-loop-sch-root}：将电流信号转换为电压信号后，接入ADC转换为数字量，由MCU通过SPI串行总线读取。模拟前端（信号转换与处理）部分如图~\ref{fig:rig-ctrl-intf-loop-sch-sample}：稳压滤波过的+24V电压接入变送器正极接线柱(+)为其供电，变送器负极接线柱(-)输出的\SIrange{4}{20}{\milli\A}电流信号经过\SI{240}{\ohm}采样电阻R2得到\SIrange{0.96}{4.8}{\mV}电压信号，经R3、C1一阶滤波，接入ADC模拟输入端。这里R1起双重作用：与C6组成电源滤波器（并非唯一，见\ref{sec:impl-pcb-pressure}中供电部分），使电流环中串联电阻（R1、R2）不低于\SI{250}{\ohm}以满足HART协议物理层要求。ADC选用AD768x系列\footnotemark{}，可直接使用对应数据手册中参考电路，具体实现不再赘述。
+接口电路总体构成如图~\ref{fig:rig-ctrl-intf-loop-sch-root}：将电流信号转换为电压信号后，接入ADC转换为数字量，由MCU通过SPI串行总线读取。模拟前端（信号转换与处理）部分如图~\ref{fig:rig-ctrl-intf-loop-sch-sample}：稳压滤波过的+24V电压接入变送器正极接线柱(+)为其供电，变送器负极接线柱(-)输出的\SIrange{4}{20}{\mA}电流信号经过\SI{240}{\ohm}采样电阻R2得到\SIrange{0.96}{4.8}{\mV}电压信号，经R3、C1一阶滤波，接入ADC模拟输入端。这里R1起双重作用：与C6组成电源滤波器（并非唯一，见\ref{sec:impl-pcb-pressure}中供电部分），使电流环中串联电阻（R1、R2）不低于\SI{250}{\ohm}以满足HART协议物理层要求。ADC选用AD768x系列\footnotemark{}，可直接使用对应数据手册中参考电路，具体实现不再赘述。
 
 \footnotetext{ADI公司AD768x系列、TI公司ADS888x系列为针脚、封装均兼容，功能相同，但性能参数各异的SPI接口SAR（连续逼近）型ADC，由于从ADI公司获取了AD7686样片，下文中该ADC统一称为``AD7686''。}
 
 \begin{figure}[tb]
 \centering
 \includegraphics[width=0.8\linewidth]{rig/ctrl__intf__loop__sch__root}
-\caption{\SIrange{4}{20}{\milli\A}电流环接口电路原理图（总体）}
+\caption{\SIrange{4}{20}{\mA}电流环接口电路原理图（总体）}
 \label{fig:rig-ctrl-intf-loop-sch-root}
 \end{figure}
 
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1\linewidth]{rig/ctrl__intf__loop__sch__sample}
-\caption{\SIrange{4}{20}{\milli\A}电流环接口电路原理图（前端）}
+\caption{\SIrange{4}{20}{\mA}电流环接口电路原理图（前端）}
 \label{fig:rig-ctrl-intf-loop-sch-sample}
 \end{figure}
 
 \subsection{电子比例阀接口}\label{sec:rig-ctrl-intf-reg}
 
-\ref{sec:rig-pressure-supply-integrated}节中提到的压力控制器或电子比例阀接受的设定点输入分为两种：模拟电压信号、\SIrange{4}{20}{\milli\A}模拟电流环信号。模拟电压输入可直接通过单片机内置DAC（输出范围\SIrange{0}{3.3}{\V}）经一级放大滤波得到，其原理图与图\ref{fig:rig-ctrl-intf-loop-sch-sample}~中采样电阻之后的部分基本相同，不再赘述。模拟电流输入可用AD420集成电流输出DAC提供，接法如图~\ref{fig:rig-ctrl-intf-ad420}。
+\ref{sec:rig-pressure-supply-integrated}节中提到的压力控制器或电子比例阀接受的设定点输入分为两种：模拟电压信号、\SIrange{4}{20}{\mA}模拟电流环信号。模拟电压输入可直接通过单片机内置DAC（输出范围\SIrange{0}{3.3}{\V}）经一级放大滤波得到，其原理图与图\ref{fig:rig-ctrl-intf-loop-sch-sample}~中采样电阻之后的部分基本相同，不再赘述。模拟电流输入可用AD420集成电流输出DAC提供，接法如图~\ref{fig:rig-ctrl-intf-ad420}。
 
 \begin{figure}[tbhp]
 \centering
