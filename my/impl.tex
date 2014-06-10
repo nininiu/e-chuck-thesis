@@ -1,8 +1,7 @@
 % !TeX root = ../main.tex
 \chapter{检测平台搭建与调试}\label{ch:impl}
 
-本章将具体实现上一章中设计的检测平台，
-%TODO:intro
+上一章将检测平台分为四个子系统，并讨论了每个子系统中的各组件的原理与初步设计方案。为了搭建检测平台，需先完善各组件设计方案，然后将其具体实现，并检验其性能满足检测平台要求后，整合进所属子系统，成为完整的检测平台的一部分。本章将按照自底向上的顺序，逐一讨论各组件的实现、检验与调试过程。
 
 
 
@@ -17,25 +16,25 @@
 
 稳压电路拓扑结构如图~\ref{fig:impl-pcb-pressure-sch-power}：\SI{+24}{\V}电源输入首先通过电源滤波保护电路（``line filter''），然后依次经过两级线性稳压芯片得到\SI{+12}{\V}与\SI{+5}{\V}；同时，\SI{+12}{\V}还向精密\SI{+5}{\V}电压基准芯片供电，以提供ADC所需要的参考电压。滤波保护电路原理如图~\ref{fig:impl-pcb-pressure-sch-power-filter}：\bverb|D1|为防反接二极管；\bverb|L1|、\bverb|L2|为磁珠，对高频信号呈阻性，用于衰减高频电源噪声；\bverb|T1|为共模电感，与\bverb|C2|、\bverb|C3|、\bverb|C4|形成LC滤波器，用于消除电源纹波；\bverb|D2|为TVS（瞬态电压抑制）二极管，可防止电压尖峰损坏电路。这样既可对整个PCB乃至外部元件起到保护作用，又可降低模拟电路中因电源纹波产生的噪声。需要注意的是，虽然设计了板载滤波电路，仍不应直接使用开关电源供电，最好先经过外置直流电源滤波器消除较高能量的纹波，再接入PCB。
 
-上述设计为v0.3.1版本，之前设计的v0.2.1版中不含板载电源滤波器，且其中第一级稳压电路为DC-DC开关转换器，实测发现模拟信号噪声极大，其中含有周期性的纹波成分以及频繁的尖峰，如\ref{fig:impl-pcb-pressure-emi-before}；加入滤波电路后，各种噪声均显著降低，如\ref{fig:impl-pcb-pressure-emi-after}。
+上述设计为v0.3.1版本，之前设计的v0.2.1版本不含板载电源滤波器，且其中第一级稳压电路为DC-DC开关转换器，实测发现模拟信号噪声极大，其中含有周期性的纹波成分以及频繁的尖峰，如\ref{fig:impl-pcb-pressure-emi-before}；加入滤波电路后，各种噪声均显著降低，如\ref{fig:impl-pcb-pressure-emi-after}。
 
-\begin{figure}[tbhp]
+\begin{figure}[hbp]
 \centering
-\includegraphics[width=1\linewidth]{impl/pcb__pressure__sch__overall}
+\includegraphics[width=0.87\linewidth]{impl/pcb__pressure__sch__overall}
 \caption{背吹控制系统接口 -- 原理图 -- 总体}
 \label{fig:impl-pcb-pressure-sch-overall}
 \end{figure}
 
-\begin{figure}[tbhp]
+\begin{figure}[hbp]
 \centering
-\includegraphics[width=0.75\linewidth]{impl/pcb__pressure__sch__power}
+\includegraphics[width=0.65\linewidth]{impl/pcb__pressure__sch__power}
 \caption{背吹控制系统接口 -- 原理图 -- 稳压}
 \label{fig:impl-pcb-pressure-sch-power}
 \end{figure}
 
 \begin{figure}[p]
 \centering
-\includegraphics[width=0.9\linewidth]{impl/pcb__pressure__sch__power__filter}
+\includegraphics[width=0.90\linewidth]{impl/pcb__pressure__sch__power__filter}
 \caption{背吹控制系统接口 -- 原理图 -- 滤波}
 \label{fig:impl-pcb-pressure-sch-power-filter}
 \end{figure}
@@ -44,17 +43,18 @@
   \centering
   \begin{subfigure}{1\textwidth}
     \centering
-    \includegraphics[height=0.33\textheight]{impl/pcb__pressure__emi__before.jpg}
+    \includegraphics[height=0.30\textheight]{impl/pcb__pressure__emi__before.jpg}
     \caption{v0.2.1 无电源滤波}
     \label{fig:impl-pcb-pressure-emi-before}
   \end{subfigure}
+  \par\bigskip
   \begin{subfigure}{1\textwidth}
     \centering
-    \includegraphics[height=0.33\textheight]{impl/pcb__pressure__emi__after.jpg}
+    \includegraphics[height=0.30\textheight]{impl/pcb__pressure__emi__after.jpg}
     \caption{v0.3.1 有电源滤波}
     \label{fig:impl-pcb-pressure-emi-after}
   \end{subfigure}
-\caption{背吹控制系统接口 -- 噪声}
+\caption{背吹控制系统接口 -- 噪声比较}
 \label{fig:impl-pcb-pressure-emi}
 \end{figure}
 
@@ -106,7 +106,7 @@
 \label{fig:impl-pcb-zaber-opto-perf}
 \end{figure}
 
-\begin{figure}[tbhp]
+\begin{figure}[p]
 \centering
 \includegraphics[height=0.3\textheight]{impl/pcb__zaber__emi__before.jpg}
 \caption{LAC-10A零位传感器 -- 电磁干扰}
@@ -125,6 +125,87 @@
 \includegraphics[height=0.3\textheight]{impl/pcb__zaber__new__photo.jpg}
 \caption{LAC-10A零位传感器 -- 新设计 -- 实物图}
 \label{fig:impl-pcb-zaber-new-photo}
+\end{figure}
+
+
+\clearpage
+
+
+\subsection{配电与接线}\label{sec:impl-pcb-power}
+
+检测平台中，多处需要\SI{+24}{\V}或\SI{\pm 15}{\V}直流供电，可由两个开关电源提供。由\ref{sec:impl-pcb-pressure}节讨论知，还需接入\SI{+24}{\V}直流电源滤波器，将噪声源与噪声敏感电路隔离开。为方便检测平台的搭建与扩展，使用安装在DIN导轨上的接线端子块辅助配电，如图~\ref{fig:impl-pcb-power-terminal}。接线端子块从右至左依次分配为：交流\SI{220}{\V}市电（包括地线``FG''，在此处单点接地），\SI{+24}{\V}直流（未滤波、已滤波），\SI{\pm 15}{\V}直流。
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{impl/pcb__power__terminal.jpg}
+\caption{配电与接线 -- 实物图}
+\label{fig:impl-pcb-power-terminal}
+\end{figure}
+
+
+
+\clearpage
+
+
+
+\section{机械结构组装搭建}\label{sec:impl-mech}
+
+\ref{sec:rig-model}节中设计了检测平台的机械结构。其中：待测静电卡盘及其电源已有，型材框架、标准连接件可直接外购，自行设计的零件需送外协加工。本节主要讨论如何将这些组件按照合理顺序装配、搭建成完整的检测平台机械结构。
+
+
+\subsection{框架结构主体}\label{sec:impl-mech-frame}
+
+以静电卡盘连接板（\ref{sec:rig-model-base}节）为主体，将型材逐步装配到其上，形成完整的框架。型材可分为两类：4根一组的纵向型材，以及构成正方形顶层/底层的型材。由于框架结构主体上下对称，可先装配一侧，翻转后再用同样方式装配另一侧。由于型材间连接存在过约束，且型材本身具有一定尺寸公差，在装配时需特别注意，以避免产生过大的装配误差。具体装配方法如下：首先将$\num{50}\times\num{50}\times\SI{30}{\mm}$挤压角件（共8个）通过T槽螺母与螺栓连接在纵向型材上（暂不拧紧），然后将其通过螺钉定位静电卡盘连接板上，并拧紧所有螺钉螺栓，完成后如图~\ref{fig:impl-mech-frame-assy-sub1}~与图~\ref{fig:impl-mech-frame-assy-sub3}~所示；接下来将组成正方形的4根型材先用铸钢角件（共4个）内部连接，旋入紧定螺钉（同样暂不拧紧），然后通过T槽螺母和螺栓将$\num{60}\times\num{60}\times\SI{30}{\mm}$角件（共8个）连接在纵向与正方形型材之间，在调整各型材位置后，逐步、对称地拧紧所有螺钉螺栓，完成后如图~\ref{fig:impl-mech-frame-assy-sub2}~与图~\ref{fig:impl-mech-frame-assy-sub4}~所示；图~\ref{fig:impl-mech-frame-assy-sub4}~即为装配完毕的框架结构主体。
+
+\begin{figure}[p]
+  \centering
+  \begin{subfigure}{1\textwidth}
+    \centering
+    \includegraphics
+      [max size={1\textwidth}{0.45\textheight}]
+      {impl/mech__frame__assy__1.jpg}
+    \caption{在连接板一侧连接4根纵向型材}
+    \label{fig:impl-mech-frame-assy-sub1}
+  \end{subfigure}
+  \par\bigskip
+  \begin{subfigure}{1\textwidth}
+    \centering
+    \includegraphics
+      [max size={1\textwidth}{0.45\textheight}]
+      {impl/mech__frame__assy__2.jpg}
+    \caption{在纵向型材上完成正方形框架}
+    \label{fig:impl-mech-frame-assy-sub2}
+  \end{subfigure}
+  \caption{框架结构主体装配}
+  \label{fig:impl-mech-frame-assy-a}
+\end{figure}
+\begin{figure}[p]
+  \ContinuedFloat
+  \centering
+  \begin{subfigure}{1\textwidth}
+    \centering
+    \includegraphics
+      [max size={1\textwidth}{0.9\textheight}]
+      {impl/mech__frame__assy__3.jpg}
+    \caption{整体反转并连接另一侧的4根纵向型材}
+    \label{fig:impl-mech-frame-assy-sub3}
+  \end{subfigure}
+  \caption{框架结构主体装配（续）}
+  \label{fig:impl-mech-frame-assy-b}
+\end{figure}
+\begin{figure}[p]
+  \ContinuedFloat
+  \centering
+  \begin{subfigure}{1\textwidth}
+    \centering
+    \includegraphics
+      [max size={1\textwidth}{0.9\textheight}]
+      {impl/mech__frame__assy__4.jpg}
+    \caption{完成}
+    \label{fig:impl-mech-frame-assy-sub4}
+  \end{subfigure}
+  \caption{框架结构主体装配（续）}
+  \label{fig:impl-mech-frame-assy-c}
 \end{figure}
 
 
