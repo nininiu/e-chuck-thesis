@@ -190,7 +190,7 @@
     \caption{整体反转并连接另一侧的4根纵向型材}
     \label{fig:impl-mech-frame-assy-sub3}
   \end{subfigure}
-  \caption{框架结构主体装配（续）}
+  \caption{框架结构主体装配（续1）}
   \label{fig:impl-mech-frame-assy-b}
 \end{figure}
 \begin{figure}[p]
@@ -204,10 +204,29 @@
     \caption{完成}
     \label{fig:impl-mech-frame-assy-sub4}
   \end{subfigure}
-  \caption{框架结构主体装配（续）}
+  \caption{框架结构主体装配（续2）}
   \label{fig:impl-mech-frame-assy-c}
 \end{figure}
 
+
+\subsection{微力探头组件}\label{sec:impl-mech-probe}
+
+由于LSB200微力传感器安全过载仅\SI{1}{\newton}，装配时应小心避免对其造成不可恢复的损伤。具体装配方法如下：
+
+\begin{enumerate}
+  \item
+    将LSB200接入电控系统
+    %TODO:xref AD7730
+    ，并在整个装配过程中监测其读数，尽量避免其受力超过满量程。
+  \item
+    LSB200处于平放状态（贴有商标一面向上），轻轻握住LSB200活动端，将螺纹转接头的M3外螺纹端旋入LSB200活动端，并在保证LSB200不过载的同时，将转接头旋紧。
+  \item
+    用小钳子夹住转接头，将红宝石探头旋入转接头的M2内螺纹端。
+  \item
+    使LAC-10A/JYPY-02213处于伸长状态，轻轻握住传感器侧面（固定端），将其连接在推杆末端/平移台上。
+  \item
+    将LAC-10A/JYPY-02213固定在连接板上。
+\end{enumerate}
 
 
 
@@ -224,22 +243,7 @@
 
 \section{stash}
 
-由于LSB200微力传感器安全过载仅\SI{1}{\newton}，装配时应特别小心，避免对其造成不可恢复的损伤。正确的装配方法如下：
 
-\begin{enumerate}
-  \item
-    将LSB200接入电控系统
-    %TODO:xref AD7730
-    ，并在整个装配过程中监测其读数，尽量避免其受力超过满量程。
-  \item
-    LSB200处于平放状态（贴有商标一面向上），轻轻握住LSB200活动端，将螺纹转接头的M3外螺纹端旋入LSB200活动端，并在保证LSB200不过载的同时，将转接头旋紧。
-  \item
-    用小钳子夹住转接头，将红宝石探头旋入转接头的M2内螺纹端。
-  \item
-    使LAC-10A/JYPY-02213处于伸长状态，轻轻握住传感器侧面（固定端），将其连接在推杆末端/平移台上。
-  \item
-    将LAC-10A/JYPY-02213固定在连接板上。
-\end{enumerate}
 
 
 由于检测平台处于试验阶段，电控系统组成随时可能发生变化，因此直接使用最小系统版作为MCU载体。
