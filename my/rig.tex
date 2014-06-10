@@ -268,7 +268,7 @@ v \leq \SI{100}{\um\per\second}
 \label{fig:rig-model-echuck-plug-assy}
 \end{figure}
 
-\begin{figure}[p]
+\begin{figure}[thbp]
 \centering
 \includegraphics[width=0.618\textwidth]{rig/model__echuck__base__iso}
 \caption{静电卡盘连接板等轴测图}
@@ -282,14 +282,15 @@ v \leq \SI{100}{\um\per\second}
 框架主体设计为三层对称结构：中间一层是静电卡盘连接板，上下两层均为4根型材用铸钢角件和紧定螺钉连接成的正方形结构；层与层之间用4根纵向型材负责承重，在连接板侧使用$\num{50}\times\num{50}\times\SI{30}{\mm}$挤压角件连接（三维模型中已表示出），在正方形框架侧使用$\num{60}\times\num{60}\times\SI{30}{\mm}$角件连接。这种连接方式的主要优点是不依靠型材与角件的摩擦力承受重量，而是靠型材、角件、连接螺栓将载荷传至地面，稳定可靠。
 
 
-\subsection{微力探头部分}\label{sec:rig-model-probe}
+\subsection{微力探头及连接板}\label{sec:rig-model-probe}
 
-由于红宝石探头的连接螺纹为M2外螺纹，LSB200的连接螺纹为M3内螺纹，设计螺纹转接头如图~\ref{fig:rig-model-probe-connLSBRuby}。由\ref{sec:rig-probe-feeding}节中讨论，需设计微力探头组件位置粗调结构。考虑到LAC-10A电动推杆的行程为\SI{10}{\mm}，采用最简单易行的设计（三维模型中已表示出）：在框架结构上部加装可自由调节位置的型材组，由横、竖两根型材构成；横梁用螺栓、大垫圈、T槽螺母连接在框架上层四边形的下面；竖梁使用$\num{60}\times\num{60}\times\SI{30}{\mm}$角件与横梁连接。在此基础上，设计微力探头组件连接板如图~\ref{fig:rig-model-probe-connBridgeProbesMain}；连接板与LAC-10A通过图~\ref{fig:rig-model-probe-connBridgeProbesTab}~所示连接块、沉头螺钉相连，与JYPY-02213通过沉头螺钉相连。连接板本身可通过螺栓与T槽螺母可紧固在竖梁任意位置。这样即可手动大范围调节微力探头在空间中的位置。
-这一部分整体三维模型如图~\ref{fig:rig-model-probe}；其中两组微力探头是为了同时在图中表示探头与LAC-10A和JYPY-02213的连接方式，实际仅选装一组。
+由\ref{sec:rig-probe-feeding}节中讨论，需设计微力探头组件位置粗调结构。考虑到LAC-10A电动推杆的行程为\SI{10}{\mm}，采用最简单易行的设计（三维模型中已表示出）：在框架结构上部加装可自由调节位置的型材组，由横、竖两根型材构成；横梁用螺栓、大垫圈、T槽螺母连接在框架上层四边形的下面；竖梁使用$\num{60}\times\num{60}\times\SI{30}{\mm}$角件与横梁连接。在此基础上，设计微力探头组件连接板如图~\ref{fig:rig-model-probe-connBridgeProbesMain}；连接板通过图~\ref{fig:rig-model-probe-connBridgeProbesTab}~所示连接块、沉头螺钉连接LAC-10A，通过沉头螺钉连接JYPY-02213，并通过螺栓与T槽螺母紧固在竖梁上。这样即可手动大范围调节微力探头在空间中的位置。
 
-%TODO:conn JYPY LSB
+LAC-10A的推杆末端提供M3外螺纹，可直接连接LSB200（两端均为M3内螺纹）；JYPY-02213滑移台需通过图~\ref{fig:rig-model-probe-connJYPYLSB}~所示的连接块与LSB200相连。红宝石探头的连接螺纹为M2外螺纹，需通过图~\ref{fig:rig-model-probe-connLSBRuby}~所示螺纹转接头与LSB200相连。
 
-\begin{figure}[p]
+完整的微力探头组件装配体三维模型如图~\ref{fig:rig-model-probe}：其中两组微力探头（传感器与红宝石探头）是为了同时在模型中表示探头与LAC-10A和JYPY-02213的连接方式，实际仅选装一组。
+
+\begin{figure}[thbp]
 \centering
 \includegraphics[width=0.618\linewidth]{rig/model__probe__connLSBRuby}
 \caption{M2$\to$M3 螺纹转接头零件图}
@@ -298,7 +299,19 @@ v \leq \SI{100}{\um\per\second}
 
 \begin{figure}[p]
 \centering
-\includegraphics[height=0.35\textheight]{rig/model__probe.png}
+\includegraphics[height=0.48\textheight]{rig/model__probe__connBridgeProbesTab}
+\caption{LAC-10A连接块零件图}
+\label{fig:rig-model-probe-connBridgeProbesTab}
+
+\centering
+\includegraphics[height=0.42\textheight]{rig/model__probe__connJYPYLSB}
+\caption{JYPY-02213连接块零件图}
+\label{fig:rig-model-probe-connJYPYLSB}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[max size={1\linewidth}{0.9\textheight}]{rig/model__probe.png}
 \caption{探头组件装配体三维模型}
 \label{fig:rig-model-probe}
 \end{figure}
@@ -308,20 +321,6 @@ v \leq \SI{100}{\um\per\second}
 \includegraphics[height=1\textheight]{rig/model__probe__connBridgeProbesMain}
 \caption{微力探头组件连接板零件图}
 \label{fig:rig-model-probe-connBridgeProbesMain}
-\end{figure}
-
-\begin{figure}[p]
-\centering
-\includegraphics[height=0.48\textheight]{rig/model__probe__connBridgeProbesTab}
-\caption{LAC-10A连接块零件图}
-\label{fig:rig-model-probe-connBridgeProbesTab}
-\end{figure}
-
-\begin{figure}[p]
-\centering
-\includegraphics[height=0.42\textheight]{rig/model__probe__connJYPYLSB}
-\caption{JYPY-02213连接块零件图}
-\label{fig:rig-model-probe-connJYPYLSB}
 \end{figure}
 
 
@@ -351,7 +350,7 @@ v \leq \SI{100}{\um\per\second}
 
 接口电路总体构成如图~\ref{fig:rig-ctrl-intf-loop-sch-root}：将电流信号转换为电压信号后，接入ADC转换为数字量，由MCU通过SPI串行总线读取。模拟前端（信号转换与处理）部分如图~\ref{fig:rig-ctrl-intf-loop-sch-sample}：稳压滤波过的+24V电压接入变送器正极接线柱(+)为其供电，变送器负极接线柱(-)输出的\SIrange{4}{20}{\mA}电流信号经过\SI{240}{\ohm}采样电阻R2得到\SIrange{0.96}{4.8}{\mV}电压信号，经R3、C1一阶滤波，接入ADC模拟输入端。这里R1起双重作用：与C6组成电源滤波器（并非唯一，见\ref{sec:impl-pcb-pressure}中供电部分），使电流环中串联电阻（R1、R2）不低于\SI{250}{\ohm}以满足HART协议物理层要求。ADC选用AD768x系列\footnotemark{}，可直接使用对应数据手册中参考电路，具体实现不再赘述。
 
-\footnotetext{ADI公司AD768x系列、TI公司ADS888x系列为针脚、封装均兼容，功能相同，但性能参数各异的SPI接口SAR（连续逼近）型ADC，由于从ADI公司获取了AD7686样片，下文中该ADC统一称为``AD7686''。}
+\footnotetext{ADI公司AD768x系列、TI公司ADS888x系列为针脚、封装均兼容，功能相同，但性能参数各异的SPI接口SAR型ADC，由于从ADI公司获取了AD7686样片，下文中该ADC统一称为``AD7686''。}
 
 \begin{figure}[tb]
 \centering
