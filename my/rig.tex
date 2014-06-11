@@ -197,9 +197,9 @@ v \leq \SI{100}{\um\per\second}
 \label{fig:rig-pressure-supply-cpc2000-sch}
 \end{figure}
 
-\begin{figure}[tbh]
+\begin{figure}[p]
 \centering
-\includegraphics[width=0.4\linewidth]{rig/pressure__supply__pump__sch}
+\includegraphics[width=0.63\linewidth]{rig/pressure__supply__pump__sch}
 \caption{反馈控制微型气泵示意}
 \label{fig:rig-pressure-supply-pump-sch}
 \end{figure}
@@ -209,9 +209,9 @@ v \leq \SI{100}{\um\per\second}
 机械式减压阀的基本原理是：入口与出口间有一开度可调的小孔，其开度由出口压强通过膜片负反馈控制，从而维持出口压强恒定。根据其具体结构不同，部分机械式减压阀在小孔开度接近0时，出口压强可低于其标称最低输出压强，但不能起到稳压作用（即出口压强与流量相关）。如SMC IR1000型精密减压阀（图~\ref{fig:rig-pressure-supply-ir1000}），标称调压范围$\SIrange{5}{200}{\kPa}$，标称灵敏度\SI{0.4}{\kPa}。该产品调压范围可满足\ref{sec:rig-pressure-supply-integrated}节中提到的电子比例阀的入口压强范围要求，因此可作为其前置减压阀使用。同时，虽然其标称最低输出压强大于供压系统最大输出压强，但考虑其工作原理（具有静态放气通路）允许其出口压强低于标称最低输出压强，可以尝试将其出口直接连接背吹入口，用于提供$\SIrange{0}{5}{\kPa}$范围内的缓慢变化的压强。
 %TODO:xref impl (manual IR1000 works)
 
-\begin{figure}[tbhp]
+\begin{figure}[p]
 \centering
-\includegraphics[height=0.9\textheight]{rig/pressure__supply__IR1000}
+\includegraphics[height=0.6\textheight]{rig/pressure__supply__IR1000}
 \caption{IR1000简化剖视}
 \label{fig:rig-pressure-supply-ir1000}
 \end{figure}
@@ -221,7 +221,7 @@ v \leq \SI{100}{\um\per\second}
 
 无论供压部分采用何种方案，均不影响压强传感器的选型。完整的选型表见附录B。
 %TODO:xref appendix (pressure mashup)
-最终选定Honeywell STD720精密差压变送器（量程可在$\pm \num{1} \sim \pm \SI{100}{\kPa}$范围内任意配置，基础准确度$0.05\%$，输出$\SIrange{4}{20}{\mA}$模拟信号、HART现场总线协议）。另外配置\SI{16}{\kPa}量程的机械指针式压强计，辅助调试。
+最终选定Honeywell STD720精密差压变送器（量程可在$\pm \num{1} \sim \pm \SI{100}{\kPa}$范围内任意配置，基础准确度$0.05\%$，输出$\SIrange{4}{20}{\mA}$模拟信号、HART现场总线协议）。
 
 
 \subsection{过压保护措施}\label{sec:rig-pressure-valve}
@@ -268,9 +268,9 @@ v \leq \SI{100}{\um\per\second}
 \label{fig:rig-model-echuck-plug-assy}
 \end{figure}
 
-\begin{figure}[thbp]
+\begin{figure}[thb]
 \centering
-\includegraphics[width=0.618\textwidth]{rig/model__echuck__base__iso}
+\includegraphics[width=0.72\textwidth]{rig/model__echuck__base__iso}
 \caption{静电卡盘连接板等轴测图}
 \label{fig:rig-model-echuck-base-iso}
 \end{figure}
@@ -290,9 +290,9 @@ LAC-10A的推杆末端提供M3外螺纹，可直接连接LSB200（两端均为M3
 
 完整的微力探头组件装配体三维模型如图~\ref{fig:rig-model-probe}：其中两组微力探头（传感器与红宝石探头）是为了同时在模型中表示探头与LAC-10A和JYPY-02213的连接方式，实际仅选装一组。
 
-\begin{figure}[thbp]
+\begin{figure}[thb]
 \centering
-\includegraphics[width=0.618\linewidth]{rig/model__probe__connLSBRuby}
+\includegraphics[width=0.44\linewidth]{rig/model__probe__connLSBRuby}
 \caption{M2$\to$M3 螺纹转接头零件图}
 \label{fig:rig-model-probe-connLSBRuby}
 \end{figure}
@@ -406,7 +406,7 @@ LAC-10A附带的零位传感器使用标准的3线开漏(open drain)输出霍尔
 \begin{figure}[p]
 \centering
 \includegraphics[width=0.5\linewidth]{rig/ctrl__intf__opto}
-\caption{LAC-10A零位传感器 -- 光耦接口 -- 原理图}
+\caption{LAC-10A零位传感器 --- 光耦接口 --- 原理图}
 \label{fig:rig-ctrl-intf-opto}
 \end{figure}
 
@@ -435,7 +435,7 @@ LSB200主要参数：阻值\SI{1000}{\ohm}，标称满量程输出\SI{0.5}{\mV\p
 \begin{sidewaysfigure}[p]
 \centering
 \includegraphics[width=1\linewidth]{rig/ctrl__intf__ad7730__ac}
-\caption{AD7730电桥接口 -- 接法示意图}
+\caption{AD7730电桥接口 --- 接法示意图}
 \label{fig:rig-ctrl-ad7730-ac}
 \end{sidewaysfigure}
 
