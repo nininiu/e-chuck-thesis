@@ -33,7 +33,7 @@
     \caption{在纵向型材上完成正方形框架}
     \label{fig:impl-mech-frame-assy-sub2}
   \end{subfigure}
-  \caption{框架结构主体装配\csep 实物图}
+  \caption{框架结构主体装配实物图}
   \label{fig:impl-mech-frame-assy-a}
 \end{figure}
 \begin{figure}[p]
@@ -47,7 +47,7 @@
     \caption{整体反转并连接另一侧的4根纵向型材}
     \label{fig:impl-mech-frame-assy-sub3}
   \end{subfigure}
-  \caption{框架结构主体装配\csep 实物图（续1）}
+  \caption{框架结构主体装配实物图（续1）}
   \label{fig:impl-mech-frame-assy-b}
 \end{figure}
 \begin{figure}[p]
@@ -61,7 +61,7 @@
     \caption{完成}
     \label{fig:impl-mech-frame-assy-sub4}
   \end{subfigure}
-  \caption{框架结构主体装配\csep 实物图（续2）}
+  \caption{框架结构主体装配实物图（续2）}
   \label{fig:impl-mech-frame-assy-c}
 \end{figure}
 
@@ -91,7 +91,7 @@
     \caption{底部}
     \label{fig:impl-mech-chuck-bottom}
   \end{subfigure}
-  \caption{静电卡盘装配\csep 实物图}
+  \caption{静电卡盘装配实物图}
   \label{fig:impl-mech-chuck}
 \end{figure}
 
@@ -120,7 +120,7 @@
 \includegraphics
   [max size={1\linewidth}{1\textheight}]
   {impl/mech__probe__assy.jpg}
-\caption{微力探头组件\csep 实物图}
+\caption{微力探头组件实物图}
 \label{fig:impl-mech-probe-assy}
 \end{figure}
 
@@ -227,48 +227,42 @@
 \clearpage
 
 
-%NOTE:
-%  ``stepper'': the stepper motor part
-%  ``zaber''  : the home sensor part
+\subsection{LAC-10A电动推杆接口}\label{sec:impl-pcb-zaber}
 
-\subsection{电动推杆步进电机驱动}\label{sec:impl-pcb-stepper}
+\ref{sec:rig-ctrl-intf-stepper}节中讨论了LAC-10A内置步进电机的驱动器选型以及零位传感器部分的设计。以下讨论这两部分的具体实现。
 
-\ref{sec:rig-ctrl-intf-stepper}节为LAC-10A内置的步进电机选配的DM422C型驱动器如图~\ref{fig:impl-pcb-stepper-dm422c}：使用\SI{+24}{\V}为其供电，通过MAX490差分输入输出芯片（用万用板实现，如图~\ref{fig:impl-pcb-stepper-max490}）从MCU接收方向/脉冲控制信号。
+\subsubsection{步进电机驱动}\label{sec:impl-pcb-zaber-stepper}
 
-\begin{figure}[tbhp]
+选配的DM422C型驱动器如图~\ref{fig:impl-pcb-zaber-dm422c}：使用\SI{+24}{\V}为其供电，通过MAX490差分输入输出芯片（用万用板实现，如图~\ref{fig:impl-pcb-zaber-max490}）从MCU接收方向/脉冲控制信号。
+
+\begin{figure}[tbh]
 \centering
-\includegraphics[width=0.618\linewidth]{impl/pcb__stepper__dm422c.jpg}
-\caption{DM422C步进电机驱动器\csep 实物图}
-\label{fig:impl-pcb-stepper-dm422c}
+\includegraphics[width=0.55\linewidth]{impl/pcb__zaber__dm422c.jpg}
+\caption{DM422C步进电机驱动器实物图}
+\label{fig:impl-pcb-zaber-dm422c}
 \end{figure}
 
-\begin{figure}[tbhp]
+\begin{figure}[tbh]
 \centering
-\includegraphics[width=0.618\linewidth]{impl/pcb__stepper__max490.jpg}
-\caption{MAX490差分输入输出板\csep 实物图}
-\label{fig:impl-pcb-stepper-max490}
+\includegraphics[width=0.55\linewidth]{impl/pcb__zaber__max490.jpg}
+\caption{MAX490差分输入输出板实物图}
+\label{fig:impl-pcb-zaber-max490}
 \end{figure}
 
+\subsubsection{零位传感器及接口}\label{sec:impl-pcb-zaber-homing}
 
-%\clearpage
-
-
-\subsection{电动推杆零位传感器及接口}\label{sec:impl-pcb-zaber}
-
-\ref{sec:rig-ctrl-intf-stepper}节为LAC-10A零位传感器设计了光耦隔离接口电路（图~\ref{fig:rig-ctrl-intf-opto}），由于其组成简单，直接用万用板与直插封装光耦制作，如图~\ref{fig:impl-pcb-zaber-opto-perf}：白色IC为光耦，色环电阻为光耦输入端限流电阻，右侧棕色的线表示直接焊在万用板上的贴片上拉电阻。
-
-虽然使用该电路可减小误触发概率，但实测发现一个问题：当步进电机运行时，由于LAC-10A的零位传感器信号线与其步进电机接线处于同一电缆中，且无任何屏蔽措施，仅在步进电机处于上电保持状态时，其输出上的电磁干扰峰峰值（$V_{\mathrm{pp}}$）就已超过\SI{8}{\V}（图~\ref{fig:impl-pcb-zaber-emi-before}），即使使用较高电压供电，也不能完全排除误触发现象。因此，为LAC-10A重新设计零位传感器，如图~\ref{fig:impl-pcb-zaber-new-sch}：采用同图~\ref{fig:impl-pcb-pressure-sch-power-filter}~类似的简易保护与滤波电路，并在传感器输出端加入滤波电容，以改善其抗干扰能力。由于需匹配电动推杆后部的安装尺寸，将该电路实现为PCB，安装后如图~\ref{fig:impl-pcb-zaber-new-photo}。上电实测发现电磁干扰得到有效控制，无误触发现象，与光耦接口电路配合可得到高质量的零位信号。
+为零位传感器设计的光耦隔离接口电路原理参见图~\ref{fig:rig-ctrl-intf-opto}。由于其组成简单，直接用万用板与直插封装光耦制作，如图~\ref{fig:impl-pcb-zaber-opto-perf}：白色IC为光耦，色环电阻为光耦输入端限流电阻，右侧棕色的线表示直接焊在万用板上的贴片上拉电阻。虽然使用该电路可减小误触发概率，但实测发现一个问题：当步进电机运行时，由于LAC-10A的零位传感器信号线与其步进电机接线处于同一电缆中，且无任何屏蔽措施，仅在步进电机处于上电保持状态时，其输出上的电磁干扰峰峰值（$V_{\mathrm{pp}}$）就已超过\SI{8}{\V}（图~\ref{fig:impl-pcb-zaber-emi-before}），即使使用较高电压供电，也不能完全排除误触发现象。因此，为LAC-10A重新设计零位传感器，如图~\ref{fig:impl-pcb-zaber-new-sch}：采用同图~\ref{fig:impl-pcb-pressure-sch-power-filter}~类似的简易保护与滤波电路，并在传感器输出端加入滤波电容，以改善其抗干扰能力。由于需匹配电动推杆后部的安装尺寸，将该电路实现为PCB，安装后如图~\ref{fig:impl-pcb-zaber-new-photo}。上电实测发现电磁干扰得到有效控制，无误触发现象，与光耦接口电路配合可得到高质量的零位信号。
 
 \begin{figure}[tbhp]
 \centering
-\includegraphics[width=0.66\linewidth]{impl/pcb__zaber__opto__perf.png}
+\includegraphics[width=0.618\linewidth]{impl/pcb__zaber__opto__perf.png}
 \caption{LAC-10A零位传感器\csep 光耦接口\csep 万用板}
 \label{fig:impl-pcb-zaber-opto-perf}
 \end{figure}
 
 \begin{figure}[tbhp]
 \centering
-\includegraphics[height=0.35\textheight]{impl/pcb__zaber__emi__before.jpg}
+\includegraphics[height=0.32\textheight]{impl/pcb__zaber__emi__before.jpg}
 \caption{LAC-10A零位传感器\csep 电磁干扰}
 \label{fig:impl-pcb-zaber-emi-before}
 \end{figure}
@@ -291,6 +285,20 @@
 \clearpage
 
 
+\subsection{微力探头组件整体联调}\label{sec:impl-pcb-probe}
+
+在完成微力传感器接口（\ref{sec:impl-pcb-ad7730}节）与电动推杆接口（\ref{sec:impl-pcb-zaber}节）后，即可将整个微力探头组件接入MCU调试。首先按照\ref{sec:rig-ctrl-mcu-stepper}节步骤，在控制程序中实现电动推杆归零，实测通过；然后，将AD7730数据采集功能加入控制程序，确认采集到的微力传感器读数准确有效；最后，在程序中实现\ref{sec:rig-probe}节中的晶圆接触控制。经在硅片上测试（图~\ref{fig:impl-pcb-probe-touchdown}），初始接触力可控制在\SI{10}{\mN}以内，满足检测方案要求。
+
+\begin{figure}[hb]
+\centering
+\includegraphics
+  [max size={1\linewidth}{0.7\textheight}]
+  {impl/pcb__probe__touchdown.jpg}
+\caption{微力探头组件接触晶圆}
+\label{fig:impl-pcb-probe-touchdown}
+\end{figure}
+
+
 \subsection{配电与接线}\label{sec:impl-pcb-power}
 
 检测平台中，多处需要\SI{+24}{\V}或\SI{\pm 15}{\V}直流供电，可由两个开关电源提供。由\ref{sec:impl-pcb-pressure}节讨论知，还需接入\SI{+24}{\V}直流电源滤波器，将噪声源与噪声敏感电路隔离开。为方便检测平台的搭建与扩展，使用安装在DIN导轨上的接线端子块辅助配电，如图~\ref{fig:impl-pcb-power-terminal}。接线端子块从右至左依次分配为：交流\SI{220}{\V}市电（包括地线``FG''，在此处单点接地），\SI{+24}{\V}直流（未滤波、已滤波），\SI{\pm 15}{\V}直流。
@@ -299,7 +307,9 @@
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=1\linewidth]{impl/pcb__power__terminal.jpg}
+\includegraphics
+  [max size={1\linewidth}{0.60\textheight}]
+  {impl/pcb__power__terminal.jpg}
 \caption{配电与接线端子实物图}
 \label{fig:impl-pcb-power-terminal}
 \end{figure}
@@ -390,8 +400,7 @@ Honeywell & STD720 & 压强变送器 & -100 & +100\footnotemark{} & \\
 \section{本章小结}\label{sec:impl-summary}
 
 %TODO:summary
-whatever
-
+（总之我装好了）
 
 
 
