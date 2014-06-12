@@ -164,13 +164,11 @@ v \leq \SI{100}{\um\per\second}
 
 \subsection{供压方案分析}\label{sec:rig-pressure-supply}
 
-普通气压控制元件（如减压过滤阀等）是为气动机械（如气缸、气爪、气动回转台等）设计的，输出压强下限一般为\SI{0.1}{\MPa}级，超过上文估算的压强范围，因此需使用专用设备实现压强的精确控制。本节依次围绕集成电子压强控制单元、反馈控制微型气泵、以及精密机械式减压阀三个核心组件，提出对应的供压方案。由于影响供压系统性能因素较多，本节仅针对各方案做定性分析，需经实际搭建、测试验证方案可行性与性能。
-%TODO:xref pressure impl
+普通气压控制元件（如减压过滤阀等）是为气动机械（如气缸、气爪、气动回转台等）设计的，输出压强下限一般为\SI{0.1}{\MPa}级，超过上文估算的压强范围，因此需使用专用设备实现压强的精确控制。本节依次围绕集成电子压强控制单元、反馈控制微型气泵、以及精密机械式减压阀三个核心组件，提出对应的供压方案。由于影响供压系统性能因素较多，本节仅针对各方案做定性分析，需经实际搭建、测试验证方案可行性与性能，详见第\ref{ch:impl}章~\ref{sec:impl-pressure}节。
 
 \subsubsection{集成电子压强控制单元}\label{sec:rig-pressure-supply-integrated}
 
 这类产品集成了压强控制所需的所有电、气元件，接受一个电信号输入作为压强设定点，控制出口压强等于该设定点。其中，部分产品包括完整的显示、操作单元、通信接口等，如WIKA CPC2000/CPC6000压强控制器等（图~\ref{fig:rig-pressure-supply-cpc6000}）；部分产品只有简单的指示器，设定点为模拟信号（如$\SIrange{4}{20}{\mA}$信号），如TESCOM ER3000/ER5000系列、SMC ITV00x0系列电子比例阀等。完整的压强控制器较为昂贵，但精度较高，量程可选余地较大；电子比例阀成本较低，但其量程一般仍为气动机械级，而其中较小量程型号允许的流量较低（如SMC ITV0010型，最低输出压强\SI{1}{\kPa}，最大流量仅\SI{3.5}{\L\per\minute}）。由于这类产品内部集成度较高，组成复杂，且订货周期较长，只能先通过数据手册标称值推测其性能，选取其中参数与供压系统要求匹配较好的产品订购，等待实际搭建验证。
-%TODO:xref impl (ITV0010 epic fail, mention PQ already ordered)
 
 \begin{figure}[tbh]
 \centering
@@ -207,7 +205,6 @@ v \leq \SI{100}{\um\per\second}
 \subsubsection{精密机械式减压阀}\label{sec:rig-pressure-supply-reg}
 
 机械式减压阀的基本原理是：入口与出口间有一开度可调的小孔，其开度由出口压强通过膜片负反馈控制，从而维持出口压强恒定。根据其具体结构不同，部分机械式减压阀在小孔开度接近0时，出口压强可低于其标称最低输出压强，但不能起到稳压作用（即出口压强与流量相关）。如SMC IR1000型精密减压阀（图~\ref{fig:rig-pressure-supply-ir1000}），标称调压范围$\SIrange{5}{200}{\kPa}$，标称灵敏度\SI{0.4}{\kPa}。该产品调压范围可满足\ref{sec:rig-pressure-supply-integrated}节中提到的电子比例阀的入口压强范围要求，因此可作为其前置减压阀使用。同时，虽然其标称最低输出压强大于供压系统最大输出压强，但考虑其工作原理（具有静态放气通路）允许其出口压强低于标称最低输出压强，可以尝试将其出口直接连接背吹入口，用于提供$\SIrange{0}{5}{\kPa}$范围内的缓慢变化的压强。
-%TODO:xref impl (manual IR1000 works)
 
 \begin{figure}[p]
 \centering
@@ -274,7 +271,6 @@ v \leq \SI{100}{\um\per\second}
 \caption{静电卡盘连接板等轴测图}
 \label{fig:rig-model-echuck-base-iso}
 \end{figure}
-%TODO:fix the layout!
 
 
 \subsection{型材框架主体}\label{sec:rig-model-frame}
@@ -311,14 +307,18 @@ LAC-10A的推杆末端提供M3外螺纹，可直接连接LSB200（两端均为M3
 
 \begin{figure}[p]
 \centering
-\includegraphics[max size={1\linewidth}{0.9\textheight}]{rig/model__probe.png}
+\includegraphics
+  [max size={1\linewidth}{0.9\textheight}]
+  {rig/model__probe.png}
 \caption{探头组件装配体三维模型}
 \label{fig:rig-model-probe}
 \end{figure}
 
 \begin{figure}[p]
 \centering
-\includegraphics[height=1\textheight]{rig/model__probe__connBridgeProbesMain}
+\includegraphics
+  [max size={1\linewidth}{0.9\textheight}]
+  {rig/model__probe__connBridgeProbesMain}
 \caption{微力探头组件连接板零件图}
 \label{fig:rig-model-probe-connBridgeProbesMain}
 \end{figure}
