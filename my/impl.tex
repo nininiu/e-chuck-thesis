@@ -19,7 +19,7 @@
   \begin{subfigure}{1\textwidth}
     \centering
     \includegraphics
-      [max size={1\textwidth}{0.45\textheight}]
+      [max size={1\textwidth}{0.43\textheight}]
       {impl/mech__frame__assy__1.jpg}
     \caption{在连接板一侧连接4根纵向型材}
     \label{fig:impl-mech-frame-assy-sub1}
@@ -28,7 +28,7 @@
   \begin{subfigure}{1\textwidth}
     \centering
     \includegraphics
-      [max size={1\textwidth}{0.45\textheight}]
+      [max size={1\textwidth}{0.43\textheight}]
       {impl/mech__frame__assy__2.jpg}
     \caption{在纵向型材上完成正方形框架}
     \label{fig:impl-mech-frame-assy-sub2}
@@ -118,7 +118,7 @@
 \begin{figure}[p]
 \centering
 \includegraphics
-  [max size={1\linewidth}{1\textheight}]
+  [max size={1\linewidth}{0.9\textheight}]
   {impl/mech__probe__assy.jpg}
 \caption{微力探头组件实物图}
 \label{fig:impl-mech-probe-assy}
@@ -168,14 +168,14 @@
   \centering
   \begin{subfigure}{1\textwidth}
     \centering
-    \includegraphics[height=0.45\textheight]{impl/pcb__pressure__emi__before.jpg}
+    \includegraphics[height=0.43\textheight]{impl/pcb__pressure__emi__before.jpg}
     \caption{v0.2.1 无电源滤波}
     \label{fig:impl-pcb-pressure-emi-before}
   \end{subfigure}
   \par\bigskip
   \begin{subfigure}{1\textwidth}
     \centering
-    \includegraphics[height=0.45\textheight]{impl/pcb__pressure__emi__after.jpg}
+    \includegraphics[height=0.43\textheight]{impl/pcb__pressure__emi__after.jpg}
     \caption{v0.3.1 有电源滤波}
     \label{fig:impl-pcb-pressure-emi-after}
   \end{subfigure}
@@ -287,14 +287,14 @@
 
 \subsection{微力探头组件整体联调}\label{sec:impl-pcb-probe}
 
-在完成微力传感器接口（\ref{sec:impl-pcb-ad7730}节）与电动推杆接口（\ref{sec:impl-pcb-zaber}节）后，即可将整个微力探头组件接入MCU调试。首先按照\ref{sec:rig-ctrl-mcu-stepper}节步骤，在控制程序中实现电动推杆归零，实测通过；然后，将AD7730数据采集功能加入控制程序，确认采集到的微力传感器读数准确有效；最后，在程序中实现\ref{sec:rig-probe}节中的晶圆接触控制。经在硅片上测试（图~\ref{fig:impl-pcb-probe-touchdown}），初始接触力可控制在\SI{10}{\mN}以内，满足检测方案要求。
+在完成微力传感器接口（\ref{sec:impl-pcb-ad7730}节）与电动推杆接口（\ref{sec:impl-pcb-zaber}节）后，即可将整个微力探头组件接入MCU调试。首先按照\ref{sec:rig-ctrl-mcu-stepper}节步骤，在控制程序中实现电动推杆归零，实测通过；然后，将AD7730数据采集功能加入控制程序，确认采集到的微力传感器读数准确有效；最后，在程序中实现\ref{sec:rig-probe}节中的晶圆接触控制。经在硅晶圆上测试（图~\ref{fig:impl-pcb-probe-touchdown}），初始接触力可控制在\SI{10}{\mN}以内，满足检测方案要求。
 
 \begin{figure}[hb]
 \centering
 \includegraphics
   [max size={1\linewidth}{0.7\textheight}]
   {impl/pcb__probe__touchdown.jpg}
-\caption{微力探头组件接触晶圆}
+\caption{微力探头组件接触硅晶圆}
 \label{fig:impl-pcb-probe-touchdown}
 \end{figure}
 
