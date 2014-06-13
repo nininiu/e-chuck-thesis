@@ -121,35 +121,35 @@
 
 \section{数据处理}\label{sec:exp-data}
 
-检测过程中记录的原始数据是探头受力与背吹压强随时间变化的关系（$F$ -- $t$、$p$ -- $t$图），需对其处理、分析，找到晶圆脱附的时刻，进而得到脱附时背吹压强大小。正式试验中一组典型的原始数据曲线如图~\ref{fig:exp-fpt-2400-2}：注意到探头受力曲线中有一明显的突变，标志此时晶圆发生脱附，对应时刻的压强即可认为是脱附压强。
+检测过程中记录的原始数据是探头受力与背吹压强随时间变化的关系（$F$ -- $t$、$p$ -- $t$图），需对其处理、分析，找到晶圆脱附的时刻，进而得到脱附时背吹压强大小。正式试验中一组典型的原始数据曲线如图~\ref{fig:data-fpt-2400-2}：注意到探头受力曲线中有一明显的突变，标志此时晶圆发生脱附，对应时刻的压强即可认为是脱附压强。
 
-然而，实测得到的数据曲线并非都像图~\ref{fig:exp-fpt-2400-2}~一样具有明确的脱附判定点：例如，图~\ref{fig:exp-fpt-2200-5}~所示的数据曲线就无法简单判定。另外，虽然探头受力与背吹压强均为随时间改变的量，且$F$ -- $t$、$p$ -- $t$图实际上由于手动控制压强无法做到压强随时间线性上升，直接观察探头受力随时间变化曲线的话，有误判的可能。因此将原始数据绘制成以探头受力为纵坐标、背吹压强为横坐标的$F$ -- $p$曲线，排除压强斜率产生的干扰。图~\ref{fig:exp-fpt-2200-5}~对应的$F$ -- $p$曲线为图~\ref{fig:exp-fp-2200-5}，对比可见，$F$ -- $p$中可清晰辨认出多个转折点（可使用MATLAB软件中的数据游标功能辅助标出）；在这些转折点中找出唯一的脱附判定点的方法将在第\ref{ch:analysis}章中讨论。
+然而，实测得到的数据曲线并非都像图~\ref{fig:data-fpt-2400-2}~一样具有明确的脱附判定点：例如，图~\ref{fig:data-fpt-2200-5}~所示的数据曲线就无法简单判定。另外，虽然探头受力与背吹压强均为随时间改变的量，且$F$ -- $t$、$p$ -- $t$图实际上由于手动控制压强无法做到压强随时间线性上升，直接观察探头受力随时间变化曲线的话，有误判的可能。因此将原始数据绘制成以探头受力为纵坐标、背吹压强为横坐标的$F$ -- $p$曲线，排除压强斜率产生的干扰。图~\ref{fig:data-fpt-2200-5}~对应的$F$ -- $p$曲线为图~\ref{fig:data-fp-2200-5}，对比可见，$F$ -- $p$中可清晰辨认出多个转折点（可使用MATLAB软件中的数据游标功能辅助标出）；在这些转折点中找出唯一的脱附判定点的方法将在第\ref{ch:analysis}章中讨论。
 
 \begin{sidewaysfigure}[p]
 \centering
 \includegraphics
   [max size={1\linewidth}{0.9\textheight}]
-  {exp/fpt__2400__2}
+  {data/fpt__2400__2}
 \caption{探头受力、背吹压强随时间变化曲线（样例1）}
-\label{fig:exp-fpt-2400-2}
+\label{fig:data-fpt-2400-2}
 \end{sidewaysfigure}
 
 \begin{sidewaysfigure}[p]
 \centering
 \includegraphics
   [max size={1\linewidth}{0.9\textheight}]
-  {exp/fpt__2200__5}
+  {data/fpt__2200__5}
 \caption{探头受力、背吹压强随时间变化曲线（样例2）}
-\label{fig:exp-fpt-2200-5}
+\label{fig:data-fpt-2200-5}
 \end{sidewaysfigure}
 
 \begin{figure}[tbhp]
 \centering
 \includegraphics
   [max size={1\linewidth}{0.9\textheight}]
-  {exp/fp__2200__5}
+  {data/fp__2200__5}
 \caption{探头受力随背吹压强变化曲线（样例2）}
-\label{fig:exp-fp-2200-5}
+\label{fig:data-fp-2200-5}
 \end{figure}
 
 
