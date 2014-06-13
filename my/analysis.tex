@@ -4,8 +4,196 @@
 
 上一章的正式试验（\ref{sec:exp-main}节）中测得了\SIrange{1800}{2600}{\V}电压下的多组数据，并经初步处理得到$F$ -- $p$曲线以及关键点。本章将重点探讨这些数据所揭示出的晶圆脱附的物理过程，并据此判断出数据曲线中的晶圆脱附点，进而得到脱附背吹压强 -- 电压数据点。
 
+
+
 \section{典型$F$ -- $p$曲线分析}\label{sec:analysis-example}
-\section{曲线特征及对应物理过程}\label{sec:analysis-feature}
+
+
+\subsection{简单型}\label{sec:analysis-example-naive} % 图样图森破，拿衣服
+
+图~\ref{fig:data-fp-2000-4}、图\ref{fig:data-fp-2000-8}~所示的曲线明显可分为两部分：左下方的部分中，$p$缓慢上升的同时，$F$变化不大；而右方的部分中，$F$随$p$上升而快速上升；两部分中间有明显的转折点。除此转折点以外，可能还有其他的转折点，但对曲线整体走势影响不大。简单型曲线完全符合第\ref{ch:principle}章中对脱附判定的预测，然而实际情况表明，纯粹的简单型曲线占所有检测数据的比例非常小：虽然大部分数据走势与简单型类似，但其组成往往更复杂，在第一次出现$F$随$p$上升而快速上升（走势为向右上方）前后可能存在多个其他类型的转折点；这些特征将在其他曲线类型中介绍，并在\ref{sec:analysis-feature}节中加以分析。
+
+\begin{figure}[tbh]
+\centering
+\includegraphics
+  [max size={0.9\linewidth}{0.9\textheight}]
+  {data/fp__2000__4}
+\caption{探头受力随背吹压强变化曲线（\SI{2000}{\V} 第4组）}
+\label{fig:data-fp-2000-4}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics
+  [max size={0.9\linewidth}{0.9\textheight}]
+  {data/fp__2000__8}
+\caption{探头受力随背吹压强变化曲线（\SI{2000}{\V} 第8组）}
+\label{fig:data-fp-2000-8}
+\end{figure}
+
+
+\clearpage
+
+
+\subsection{回转型}\label{sec:analysis-example-loop}
+
+图~\ref{fig:data-fp-2400-2}、图\ref{fig:data-fp-2600-2}~所示曲线中能明显观察到一个大回环，其走向为逆时针方向，即：随着试验继续，$p$由逐渐升高转为降低\footnotemark{}的同时，$F$出现一个尖峰，又迅速回落。该特征在很多组数据曲线中均为最明显的特征之一，尤其是在电压较高（$\geq \SI{2200}{\V}$）时。
+
+\footnotetext{此时减压阀开度仍在增加，具体原因在后文中分析。}
+
+\begin{figure}[tbh]
+\centering
+\includegraphics
+  [max size={0.9\linewidth}{0.9\textheight}]
+  {data/fp__2400__2}
+\caption{探头受力随背吹压强变化曲线（\SI{2400}{\V} 第2组）}
+\label{fig:data-fp-2400-2}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics
+  [max size={0.9\linewidth}{0.9\textheight}]
+  {data/fp__2600__2}
+\caption{探头受力随背吹压强变化曲线（\SI{2600}{\V} 第2组）}
+\label{fig:data-fp-2600-2}
+\end{figure}
+
+
+\clearpage
+
+
+\subsection{密集折点型}\label{sec:analysis-example-multi}
+
+观察图~\ref{fig:data-fp-1800-10}、图\ref{fig:data-fp-2000-7}~所示曲线，发现虽然整体走势与\ref{sec:analysis-example-naive}节中简单型相似，但在两部分曲线中间出现多个相距不远的折点。其他数据曲线中，虽然较少出现与简单型相似的走势，仍有很多具有密集折点特征。
+
+\begin{figure}[tbh]
+\centering
+\includegraphics
+  [max size={0.9\linewidth}{0.9\textheight}]
+  {data/fp__1800__10}
+\caption{探头受力随背吹压强变化曲线（\SI{1800}{\V} 第10组）}
+\label{fig:data-fp-1800-10}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics
+  [max size={0.9\linewidth}{0.9\textheight}]
+  {data/fp__2000__7}
+\caption{探头受力随背吹压强变化曲线（\SI{2000}{\V} 第7组）}
+\label{fig:data-fp-2000-7}
+\end{figure}
+
+
+\clearpage
+
+
+\subsection{倒勾型}\label{sec:analysis-example-sawtooth}
+
+图~\ref{fig:data-fp-2400-6}、图\ref{fig:data-fp-2600-5}~所示的曲线走势与大部分数据曲线不同：在检测刚开始的时候，$F$即随$p$上升而上升，然后在一点突然出现转折，曲线总体趋势变为$p$上升而$F$反而快速下降。
+
+\begin{figure}[tbh]
+\centering
+\includegraphics
+  [max size={0.9\linewidth}{0.9\textheight}]
+  {data/fp__2400__6}
+\caption{探头受力随背吹压强变化曲线（\SI{2400}{\V} 第6组）}
+\label{fig:data-fp-2400-6}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics
+  [max size={0.9\linewidth}{0.9\textheight}]
+  {data/fp__2600__5}
+\caption{探头受力随背吹压强变化曲线（\SI{2600}{\V} 第5组）}
+\label{fig:data-fp-2600-5}
+\end{figure}
+
+
+\clearpage
+
+
+\subsection{复合型}\label{sec:analysis-example-complex}
+
+正式试验获得的数据中，还有一些曲线中同时呈现出多个特征，如：图~\ref{fig:data-fp-2200-6}、图~\ref{fig:data-fp-2200-7}~均可视为倒钩型、回转型、简单型的顺序组合；图~\ref{fig:data-fp-2400-7}可视为倒钩型、密集折点型与简单型的顺序组合等等。这类数据揭示了背吹平衡脱附过程本身的复杂性，需通过对其组成特征的分析来加深对其内在物理过程的理解。
+
+\begin{figure}[tbh]
+\centering
+\includegraphics
+  [max size={0.9\linewidth}{0.9\textheight}]
+  {data/fp__2200__6}
+\caption{探头受力随背吹压强变化曲线（\SI{2200}{\V} 第6组）}
+\label{fig:data-fp-2200-6}
+\end{figure}
+
+\begin{figure}[tbh]
+\centering
+\includegraphics
+  [max size={0.9\linewidth}{0.9\textheight}]
+  {data/fp__2200__7}
+\caption{探头受力随背吹压强变化曲线（\SI{2200}{\V} 第7组）}
+\label{fig:data-fp-2200-7}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics
+  [max size={0.9\linewidth}{0.9\textheight}]
+  {data/fp__2400__7}
+\caption{探头受力随背吹压强变化曲线（\SI{2400}{\V} 第7组）}
+\label{fig:data-fp-2400-7}
+\end{figure}
+
+
+
+\clearpage
+
+
+
+\section{曲线特征与对应物理过程}\label{sec:analysis-feature}
+
+
+
+
+\subsection{失稳性脱附}\label{sec:analysis-feature-destabilize}
+
+当类似\ref{sec:analysis-example-naive}节中图~\ref{fig:data-fp-2000-4}~所示的$p$较小增长引起$F$较大增长的曲线段出现时，可认为是微力探头与晶圆接触处局部已发生决定性的脱附，即随着静电力减小，间隙随之逐渐扩大，引起静电力进一步减小，仅由于晶圆本身刚度以及其他区域吸附力的影响，尚未完全脱附，此时再增加压强，则未能与静电力相平衡的压力将由微力探头对晶圆施加的接触力来平衡。
+
+%TODO:more features
+
+
+
 \section{脱附点的判定}\label{sec:analysis-criterion}
+
+%TODO:criterion
+
+
+
+
 \section{数据汇总与拟合}\label{sec:analysis-tally}
+
+按照上文总结出的数据处理与分析方法，求出正式试验中所有有效数据的脱附压强，并对同电压下的多组数据取中位数\footnotemark{}后，用二次多项式拟合，结果如图~\ref{fig:data-tally}，多项式为：
+\[
+\hat{p} = 0.05919\;\hat{v}^2 + -1.324\;\hat{v} + 1.000
+\]
+其中，$\hat{p} = p / \SI{1}{\kPa}$，$\hat{v} = v / \SI{1}{\kV}$。拟合相关系数$R^2 = \num{0.9992}$
+虽然相关系数较高，说明数据较好地符合拟合多项式，但考虑到在库仑型静电卡盘的静电力理论公式中
+%TODO:xref bg eqn
+，静电力与电压平方成正比，无法解释拟合多项式中的一次项，说明实际静电力产生机理比理论公式复杂，仍有理论公式未能考虑到的因素。
+
+\footnotetext{由于数据点较分散，用中位数能更准确地估计某一电压下的脱附压强真实值。}
+
+\begin{figure}[thbp]
+\centering
+\includegraphics[width=0.8\linewidth]{data/tally}
+\caption{脱附背吹压强 -- 电极电压数据点汇总与拟合}
+\label{fig:data-tally}
+\end{figure}
+
+
+
 \section{本章小结}\label{sec:analysis-summary}
+
+
