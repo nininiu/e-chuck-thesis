@@ -51,7 +51,7 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ExecuteOptions{utf,arialtitle}
 \ProcessOptions\relax
-\LoadClass[cs4size,a4paper,openany,nocap,UTF8]{ctexbook}
+\LoadClass[cs4size,a4paper,nocap,UTF8]{ctexbook}
 \ifthu@bachelor\relax\else
   \ifthu@master\relax\else
     \ifthu@doctor\relax\else
