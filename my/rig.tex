@@ -129,9 +129,7 @@ v \leq \SI{100}{\um\per\second}
 
 微型精密电动进给机构行程较短，为方便检测平台装配与使用，可设计粗精二级调节：先使用一级粗动台（手动或电动均可）将整个微力探头组件定位在距晶圆不超过精密进给机构行程的位置上，再驱动精密进给机构控制探头与晶圆接触。为了减小对粗调环节要求，需要精密进给机构行程至少为\SI{5}{\mm}。
 
-由于候选型号较多，完整的选型表参见附录B。
-%TODO:xref appendix (feeding mashup)
-综合考虑性能、价格、订货周期等因素，选择LAC10A-T4精密电动推杆（图~\ref{fig:rig-probe-feeding-LAC10A}），其原理为步进电机驱动滚珠丝杠，有效行程\SI{10}{\mm}，重复定位精度$\pm\SI{1.5}{\um}$。另外，选择JYPY-02213精密手动滑移台（图\ref{fig:rig-probe-feeding-JYPY}）作为备用方案，其行程\SI{13}{\mm}，测微螺旋最小刻度\SI{10}{\um}。
+由于候选型号较多，完整的选型表参见附录B（图~\ref{fig:-b-mashup-feeding}）。综合考虑性能、价格、订货周期等因素，选择LAC10A-T4精密电动推杆（图~\ref{fig:rig-probe-feeding-LAC10A}），其原理为步进电机驱动滚珠丝杠，有效行程\SI{10}{\mm}，重复定位精度$\pm\SI{1.5}{\um}$。另外，选择JYPY-02213精密手动滑移台（图\ref{fig:rig-probe-feeding-JYPY}）作为备用方案，其行程\SI{13}{\mm}，测微螺旋最小刻度\SI{10}{\um}。
 
 \begin{figure}[tbh]
 \centering
@@ -216,8 +214,7 @@ v \leq \SI{100}{\um\per\second}
 
 \subsection{传感部分选型}\label{sec:rig-pressure-sensor}
 
-无论供压部分采用何种方案，均不影响压强传感器的选型。完整的选型表见附录B。
-%TODO:xref appendix (pressure mashup)
+无论供压部分采用何种方案，均不影响压强传感器的选型。完整的选型表见附录B（图~\ref{fig:-b-mashup-pressure}）。
 最终选定Honeywell STD720精密差压变送器（量程可在$\pm \num{1} \sim \pm \SI{100}{\kPa}$范围内任意配置，基础准确度$0.05\%$，输出$\SIrange{4}{20}{\mA}$模拟信号、HART现场总线协议）。
 
 
