@@ -46,7 +46,7 @@ F_{\mathrm{elec}} = (p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} - p_0 \c
 
 \subsection{脱附条件}\label{sec:principle-backside-dechuck}
 
-背吹平衡法中，需人为产生并检测晶圆即将脱附至完全脱附的状态，从而间接获得静电力大小。制造脱附条件的基本方法是使背吹压力相对于静电吸引力更大，可通过提高气压、降低电压等方式实现。检测脱附的基本方法是监测晶圆在脱附时产生变化的物理量，如位移（晶圆挠度）、电极电压/电流、背吹压强/流量等。%TODO:analysis/xref
+背吹平衡法中，需人为产生并检测晶圆即将脱附至完全脱附的状态，从而间接获得静电力大小。制造脱附条件的基本方法是使背吹压力相对于静电吸引力更大，可通过提高气压、降低电压等方式实现。检测脱附的基本方法是监测晶圆在脱附时产生变化的物理量，如位移（晶圆挠度）、电极电压/电流、背吹压强/流量等。
 
 
 
@@ -138,9 +138,7 @@ F_{\mathrm{elec}} = (p_{0} + p_{\mathrm{back}}) \cdot A_{\mathrm{back}} - p_0 \c
 
 \subsection{压强等效作用面积}\label{principle-prob-area}
 
-\eqref{eq:principle-backside-force}式中，晶圆背面气压等效作用面积（即$A_{\mathrm{back}}$）是未知量。
-%TODO:cite nagoya
-由于陶瓷介电层上的凸台高度较低（约\SI{10}{\um}）与晶圆背面接触情况不明，尚不能直接断言$A_{\mathrm{back}}$等于晶圆背面所有未与陶瓷层凸台/边缘接触部分的面积。由于此处无法用普通CFD求解，需要设计额外的标定步骤，测出$A_{\mathrm{back}}$数值。
+\eqref{eq:principle-backside-force}式中，晶圆背面气压等效作用面积（即$A_{\mathrm{back}}$）是未知量，已有背吹平衡方法中，认为$A_{\mathrm{back}}$等于晶圆背面所有未与陶瓷层凸台/边缘接触部分的面积\cite{RefWorks:43}。但由于陶瓷介电层上的凸台高度较低（\SI{10}{\um}量级），与晶圆背面接触情况不明，且当间隙扩大时，接触情况也会发生改变，不能直接做出上述假设。由于此处无法用普通CFD求解，需要设计额外的标定步骤，测出$A_{\mathrm{back}}$数值。
 
 
 

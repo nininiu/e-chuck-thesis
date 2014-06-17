@@ -13,7 +13,7 @@
 \makeatother
 
 
-\cdepartment[机械]{机械工程系}
+\cdepartment{机械工程系}
 \cmajor{机械工程及自动化}
 \cauthor{钟　音}
 \csupervisor{程　嘉　副教授}
@@ -26,13 +26,21 @@
 
 % 定义中英文摘要和关键字
 \begin{cabstract}
-	TODO: 中文摘要
+IC产业是国家现代工业的基础，发展IC产业需要大量IC专用装备。静电卡盘是各类IC装备中重要的通用组件，广泛用于晶圆的夹持、搬运、以及工艺腔室中，其主要工作原理为通过在静电电极上加高电压，产生均匀分布的静电力将晶圆吸附在其表面陶瓷介电层上。静电力大小是静电卡盘最主要的性能指标，其大小及均匀程度直接影响晶圆温度大小与分布、平面度等其他性能指标，是设计优化的主要目标之一；但其产生机理复杂，理论和仿真模型均较难预测，需通过实验方法检测。
+
+已有的静电力检测方案中具有多种影响其检测准确性与可重复性的因素，其中包括晶圆与静电卡盘间的间隙扩大、脱附过程自身的复杂性等等。为了更准确地检测静电力，本文针对已有方案中较为准确的背吹平衡方案中存在的问题提出了三点改进措施：检测环境为大气或真空（无等离子体）、引入微力探头组件以控制间隙并准确检测脱附、以及利用晶圆自重标定背吹等效面积，形成了新的检测方案。以此为基础，本文提出了采用新方案的检测平台的总体设计，将其分为微力探头组件、背吹控制系统、机械结构、以及自动控制与数据采集系统这四个组成子系统，并按照自顶向下的顺序给出了其中每一个组件的具体设计与选型等，完成了检测平台的设计方案。将方案中所有组件具体实现后，逐步完成了检测平台的组装、调试与搭建。
+
+为验证检测方案以及检测平台确实能有效检测静电力，在检测平台上设计了静电力检测试验：通过前期试验找到了一些试验流程与方法中存在的不足之处，在提出了改进思路后，详细规划并完成了正式试验，获得了一系列微力探头受力与背吹压强的数据。之后，本文讨论了数据的处理与分析过程：将数据曲线按照特征分类，并通过对其反映的晶圆脱附物理过程的合理推测，总结出了较为系统的脱附点与脱附压强判定方法。经对正式试验数据的处理、分析、汇总与拟合，发现背吹压强与电极电压的关系较好地符合二次多项式，验证了检测方案与检测平台的可行性。
 \end{cabstract}
 
-\ckeywords{静电卡盘, 静电力, 测量}
+\ckeywords{静电卡盘, 静电力, 脱附, 检测}
 
 \begin{eabstract}
-	TODO: English Abstract
+Semiconductor fabrication industry relies on many specialized devices. Electrostatic chucks (ESCs) are an important component commonly employed in these devices for holding silicon wafers both in transit and within process chambers. An ESC works by applying high electrostatic voltage across its electrodes, which produces evenly distributed electrostatic attractive force on the wafer, firmly chucking it to the surface of the ESC. Magnitude of total electrostatic force generated is the main specification of an ESC, having influence over other specifications such as wafer temperature distribution and flatness, thus being a main objective of design optimization. As the mechanism of electrostatic force generation is too complex for theoretical and simulation models, actual measurement is needed to evaluate the performance of an ESC.
+
+Existing force measurement schemes exhibit poor repeatability and accuracy in measurement due to many factors such as the increase of gap between wafer and ESC surface during de-chucking, as well as the intrinsic complexity of the de-chucking process itself. In order to improve overall accuracy for force measurement, we proposed the following improvements over backside-pressure-balanced force measurement scheme: placing the ESC -- wafer system within atmosphere while allowing for vacuum (no plasma), using a force-sensitive probe for better de-chucking detection and eliminating influence of gap increase, and calibrating the equivalent acting surface area for wafer backside pressure. These led to our new force measurement scheme, based on which we designed and implemented a measurement platform using a top-down approach.
+
+In order to evaluate the performance of the new measurement scheme and platform, we designed and conducted two stages of actual measurement experiments, first of which intended for finding out problems within platform implementation and experiment design, leading to the second stage which yielded a large amount of data. We then developed a systematic approach of interpreting and processing probe force -- backside pressure ($F$ -- $p$) curves, identifying the characteristic de-chucking point and associated de-chucking pressure from each curve measured. After processing all data curves, we aggregated the data on a de-chucking pressure -- electrode voltage plot, and found a good quadratic polynomial fit for the data, which verified our measurement scheme and platform.
 \end{eabstract}
 
-\ekeywords{Electrostatic Chuck, Electrostatics, Measurement}
+\ekeywords{Electrostatic Chuck, Electrostatic Force, Dechucking, Measurement}
