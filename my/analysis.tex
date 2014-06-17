@@ -158,7 +158,7 @@
 本节将列举一些$F$ -- $p$曲线中较多出现的特征，并结合静电卡盘与检测平台的结构特点，提出关于其对应物理过程的合理猜想。
 
 
-\subsection{失稳脱附}\label{sec:analysis-feature-destabilize}
+\subsection{简单失稳脱附}\label{sec:analysis-feature-destabilize}
 
 当类似\ref{sec:analysis-example-naive}节中图~\ref{fig:data-fp-2000-4}~所示的$p$较小增长引起$F$较大增长的曲线段出现时，一种可能的解释是微力探头与晶圆接触处局部已发生较大尺度的脱附，且静电力与背吹压力构成的平衡不再稳定：随着静电力减小，间隙随之逐渐扩大，引起静电力进一步减小，仅由于晶圆本身刚度以及其他区域吸附力的影响，尚未完全脱附，此时再增加压强，则未能与静电力相平衡的压力将由微力探头对晶圆施加的接触力来平衡，导致$F$迅速随$p$增长。
 
@@ -194,43 +194,55 @@
 \ref{sec:analysis-example-multi}节中描述的“密集折点型”曲线中，有一类包含如图~\ref{fig:data-fp-2000-7}~所示的特征：在较小的压强范围内，交替出现$p$变化不大而$F$向上跳变、$p$上升而$F$基本不变或缓慢上升的两种曲线段，直至$F$跳变越来越大，出现失稳脱附（\ref{sec:analysis-feature-destabilize}节）。与失稳脱附的分析类比，该特征很可能对应晶圆中心局部间隙间断性扩大，逐步失稳并出现整体脱附的物理过程。
 
 
+\subsection{边缘脱附}\label{sec:analysis-feature-rim}
 
+一类较为复杂的曲线特征为\ref{sec:analysis-example-sawtooth}节中的“倒钩型”：$F$从加压开始就随$p$较快上升，但推测晶圆整体仍处于吸附状态；折点后，$F$迅速降低而$p$出现一定波动，说明晶圆中心区域间隙变小，吸附变强；突变过后，随$p$增加，$F$的趋势反而变为缓慢降低，因此推测在折点处，晶圆由“中心间隙较大，边缘间隙较小、整体保持吸附”的状态快速转变为“中心间隙较小且更牢固吸附，边缘脱附”的状态。此时，由于静电卡盘的氦气背吹孔布置在较外侧处（如图~\ref{fig:rig-model-echuck-helium}），而晶圆边缘已脱附，无法形成接触密封，导致流动大大增强，不能简单认为晶圆仅受静压强作用。此后过程的分析需要通过对晶圆表面各处挠度的测量，建立准确的CFD模型，并通过背吹系统的流量、压强信息，获得晶圆表面的受力分布，由于已超出本文范围，不再赘述。
 
-
-
-
-%TODO:more features
+\begin{figure}[thb]
+\centering
+\includegraphics
+  [max size={0.8\linewidth}{0.45\textheight}]
+  {rig/model__echuck__helium}
+\caption{静电卡盘背吹通道工程图}
+\label{fig:rig-model-echuck-helium}
+\end{figure}
 
 
 
 \section{脱附点的判定}\label{sec:analysis-criterion}
 
-%TODO:criterion
+由上一节中各特征的物理过程分析，可得出一般$F$ -- $p$曲线的脱附点判断方式：曲线中最早出现的“简单失稳脱附”特征（\ref{sec:analysis-feature-destabilize}节）、“回转”特征（\ref{sec:analysis-feature-loop}节）以及“边缘脱附”特征（\ref{sec:analysis-feature-rim}节）均标志着晶圆大面积失稳性脱附，因此取其关键折点作为脱附点：对于“简单失稳”特征，取其唯一的折点；对于“回转”特征，取其从平稳段转入回转段的折点；对于“边缘脱附”特征，可取$F$由升转突降的折点。若在“简单失稳脱附”特征前首先出现了“快速断续脱附”特征（\ref{sec:analysis-feature-multi}节），原则上说可舍弃该组数据\footnotemark{}，但此处仍规定不舍弃数据时的脱附点选取为第一次出现$F$小范围跳变的折点。而对于“局部脱附 -- 再吸附”特征（\ref{sec:analysis-feature-reattach}节），由于对应物理过程中并未出现失稳脱附，反而使晶圆吸附更稳定，不将其作为脱附点判据。对于\ref{sec:analysis-example-complex}节所述的复合型曲线，可先检查曲线是否具有“简单失稳脱附”或“回转”特征，若有，则可直接判定其折点为脱附点；若没有，但存在“边缘脱附”特征，则取其折点为脱附点；若这些特征均未出现，暂时可判定该数据曲线无效，之后单独分析。
 
+\footnotetext{断续脱附特征在试验中出现较少，目前猜想该现象是由颗粒污染引起，若能改善试验条件，有可能消除该特征的出现。}
 
 
 
 \section{数据汇总与拟合}\label{sec:analysis-tally}
 
-按照上文总结出的数据处理与分析方法，求出正式试验中所有有效数据的脱附压强，并对同电压下的多组数据取中位数\footnotemark{}后，用二次多项式拟合，结果如图~\ref{fig:data-tally}，多项式为：
+按照上文总结出的数据处理与分析方法，找出正式试验中所有有效数据的脱附点与对应的脱附压强，并绘制脱附压强 -- 电极电压 箱线图（图~\ref{fig:data-tally-box}）。可见，同电压下多次检测得到的脱附压强较为分散，因此采用中位数估计同电压下的脱附压强真实值，并用二次多项式拟合，结果如图~\ref{fig:data-tally-fit}，多项式为：
 \[
 \hat{p} = 0.05919\;\hat{v}^2 + -1.324\;\hat{v} + 1.000
 \]
-其中，$\hat{p} = p / \SI{1}{\kPa}$，$\hat{v} = v / \SI{1}{\kV}$；拟合相关系数$R^2 = \num{0.9992}$。虽然相关系数较高，说明数据较好地符合拟合多项式，但考虑到在库仑型静电卡盘的静电力理论公式%
+其中，$\hat{p} = p / \SI{1}{\kPa}$，$\hat{v} = v / \SI{1}{\kV}$；拟合相关系数$R^2 = \num{0.9992}$。相关系数较高，说明数据较好地符合拟合多项式，验证了检测方案与上述数据处理与分析方法的可行性。同时，考虑到在库仑型静电卡盘的静电力理论公式%
 （见第\ref{ch:bg}章 \eqref{eq:bg-coulomb}式）%
-中，静电力与电压平方成正比，无法解释拟合多项式中的一次项，说明实际静电力产生机理比理论公式复杂，仍有理论公式未能考虑到的因素。
-
-\footnotetext{由于数据点较分散，用中位数能更准确地估计某一电压下的脱附压强真实值。}
+中，静电力与电压平方成正比，即使排除掉重力、大气压强等常数项，仍无法解释拟合多项式中的一次项，说明实际静电力产生机理比理论公式复杂，仍有理论公式未能考虑到的因素，有待进一步研究以确定产生该偏差的原因。
 
 \begin{figure}[thbp]
 \centering
-\includegraphics[width=0.8\linewidth]{data/tally}
-\caption{脱附背吹压强 -- 电极电压数据点汇总与拟合}
-\label{fig:data-tally}
+\includegraphics[width=0.8\linewidth]{data/tally__box}
+\caption{脱附压强 -- 电极电压数据箱线图}
+\label{fig:data-tally-box}
+\end{figure}
+
+\begin{figure}[thbp]
+\centering
+\includegraphics[width=0.8\linewidth]{data/tally__fit}
+\caption{脱附压强 -- 电极电压数据拟合}
+\label{fig:data-tally-fit}
 \end{figure}
 
 
 
 \section{本章小结}\label{sec:analysis-summary}
 
-
+本章通过对正式试验中各$F$ -- $p$曲线的分析，将所有曲线按照其走势特点分为了5大类，并一一分析了能代表该类特征的典型曲线。然后，从中找出了这些曲线中出现的共有的5个特征，给出了对与其对应的晶圆可能的吸附与脱附物理过程的合理猜想，并通过对特征对应物理过程的分析，提出了判定$F$ -- $p$曲线的脱附点的一般方法。最后，将该方法应用于正式试验中获得的有效数据的处理中，得到了脱附压强 -- 电极电压的关系，并通过拟合处理，最终验证了检测方案设计、检测平台实现、以及数据处理与分析方法的可行性。
